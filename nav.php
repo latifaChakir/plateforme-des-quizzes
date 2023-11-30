@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="navbar-header">
                     
-                    <a class="navbar-brand" href="index.html"><img src="../img/logo.png" alt="logo" /></a>
+                    <a class="navbar-brand" href="index.html"><img src="../../img/logo.png" alt="logo" /></a>
                 </div>
                 <div >
                     <ul class="nav list-nav " >
