@@ -2077,4 +2077,17 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 /*==========================================================
                 JoinUs section style
 ============================================================*/
+#mb{
+	background-color: #000000 !important;
+	width: 11rem !important;
+	text-align: center;
+    padding-bottom: 20px;
+	color: white;
+} 
+#xo{
+	COLOR: GREEN; text-align: center;
+}
+#student-name{
 
+width: 260px !important;
+}

@@ -11,10 +11,6 @@ $AfficherResult_user = mysqli_query($conn, $user_req);
 
 $cours_req="SELECT cours_name from cours ORDER by cours_name";
 $AfficherResult_cours = mysqli_query($conn, $cours_req);
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +35,16 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
 	<link href="../../css/jcarousel.css" rel="stylesheet" />
 	<link href="../../css/flexslider.css" rel="stylesheet" />
 	<link href="../../css/style.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   
+ <script src="  https://code.jquery.com/jquery-3.7.0.js"></script>
+ <script src="  https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+ <script src="  https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  
 
 	
 </head>
@@ -47,20 +53,21 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
     <?php include '../../nav.php';?>
     <!-- end nav -->
 <!-- -------------------------------------------------------------------------------------------------- -->
-<div class="container" style="margin-bottom:20rem;">
-<h3 style="COLOR: GREEN; text-align: center;">RESULT OF STUDENTS</h1>
-  <table class="table caption-top">
-  <caption></caption>
+<div class="container">
+<h3 id="xo">RESULT OF STUDENTS</h1>
+<table id="example" class="table table-striped" style="width:100%">
   <thead>
     <tr>
       <?php 
       
-      echo '<th scope="col">student name<th>';
+      echo '<th scope="col" id="student-name">student name<th>';
+     
       while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)) {
-        echo '<th scope="col">';
+        echo '<th scope="col" id="mb">';
         echo $result_cours['cours_name'];
         echo '</th>';
       }
+      echo '<th scope="col" id="mb">MOYENNE<th>';
       ?>
      
     </tr>
@@ -68,45 +75,63 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
   <tbody>
     
     <?php
-    //  if($result_user = mysqli_fetch_assoc($AfficherResult_user)){
-    //   echo'mmmmmmmmmmmmmmmmmmmmmmmmmmm';
-    //  }
-     
+ 
+    //  get info of users 
       while ($result_user = mysqli_fetch_assoc($AfficherResult_user)) {
+        // display the name of user 
         echo'<tr>';
         echo'<th scope="row">';
         echo $result_user['user_name'];
         echo'</th>';
+
          $user_id_note=$result_user['user_id'];
-         echo $user_id_note;
+      //  get the notes of user 
         $note_req=" SELECT  R.cours_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $user_id_note order by C.cours_name";
         $AfficherResult_note= mysqli_query($conn, $note_req);
         if(!$AfficherResult_note){
           die('Error in user query: ' . mysqli_error($conn));
         }
-        echo'===========>eeerrr';
+        // display notes 
+        echo'<td></td>';
+         
         while ($result_note = mysqli_fetch_assoc($AfficherResult_note)) {
-       echo'===========>zznn';
+
+          $u_note= $result_note['cours_note'];
+          
+        if( $u_note != NULL){
+          $u_note= $result_note['cours_note'];
+        }else{
+          $u_note="no note";
+        }
           echo'<td>';
-          echo $result_note['cours_note'];
+          echo$u_note;
           echo'</td>';
           
-        }echo '</tr>';
-        
-     
+        }
+        $num_of_note_req="SELECT COUNT(cours_note) AS num_of_note FROM resultat WHERE user_id = $user_id_note";
+        $AfficherResult_num_of_note= mysqli_query($conn, $num_of_note_req);
+        $result_num_of_note = mysqli_fetch_assoc($AfficherResult_num_of_note);
+
+        $sum_req="SELECT SUM(cours_note) AS some FROM resultat WHERE user_id = $user_id_note";
+        $AfficherResult_sum= mysqli_query($conn, $sum_req);
+        $result_sum = mysqli_fetch_assoc($AfficherResult_sum);
+        $total=$result_sum['some']/$result_num_of_note['num_of_note'];
+        echo'<td>';
+          echo$total;
+          echo'</td>';
+          echo '</tr>';
         
     }
       ?>
-      
-      
 
-   
   </tbody>
 </table></div>
 <!-- -------------------------------------------------------------------------------------------------- -->
 
 
-
+<script>
+    new DataTable('#example');
+</script>
       <!-- start footer-->
       <?php include '../../footer.php';?>
       <!-- end footer -->
