@@ -8,36 +8,48 @@ $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 if (!$conn) {
     die("Something went wrong: " . mysqli_connect_error());
-}
-
-if (isset($_POST['submit'])) {
+  }
   
-
-  
+  if (isset($_POST['submit'])) {
+    
+    
+    
     // Sanitize and retrieve the username and password from the form
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-
+    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+    
     // Perform a query to check if the username and password match
     $query = "SELECT * FROM autority_user inner JOIN personne ON autority_user.user_id=personne.user_id WHERE user_name = '$username' AND password_user = '$password'";
     $result = mysqli_query($conn, $query);
     $count = mysqli_num_rows($result);
     $row=mysqli_fetch_array($result);
-   
-
+    
+    
     if ($count == 0) {
-        // Username and password do not match, display an alert
-        echo '<script>
-            document.getElementById("alert").style.display = "block";
-          </script>';
+      // Username and password do not match, display an alert
+                echo '    <script>document.getElementById("alert)".innerHTML=" <strong>Invalid!</strong> Invalid password"</script>';
+    
+      
+    
     } else {
         // Username and password match, redirect to the desired page
-       
-        if($row['role_name']=='admin'){
-          header('Location: ./student/home.html');
-          exit();
+       if(password_verify($password ,$password_hashed)){
 
-        }
+         if($row['role_name']=='admin'){
+           header('Location: ./admin/home.html');
+           echo "<script>
+           console.log('<?php echo $password_hashed; ?>');
+         </script>";
+           exit();
+       
+         }elseif ($row['role_name']=='user') {
+           header('Location: ./student/Home.html');
+           exit();
+         }
+       
+        
+       }
       
     }
 }
@@ -154,10 +166,7 @@ if (isset($_POST['submit'])) {
     <input type="submit" name='submit' id="subForm" />
 
     <div class="alert alert-danger" id="alert" style="display:none;" role="alert">
-      <strong>Invalid!</strong> Invalid password
-    </div>
-    <div class="alert alert-danger" id="secsess" style="display:none;" role="alert">
-      <strong>vqlid!</strong> vqlid
+     
     </div>
     
   </form>
