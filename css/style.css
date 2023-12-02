@@ -2079,7 +2079,7 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 ============================================================*/
 #mb{
 	background-color: #000000 !important;
-	width: 11rem !important;
+	width: 100px !important;
 	text-align: center;
     padding-bottom: 20px;
 	color: white;
@@ -2091,3 +2091,9 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 
 width: 260px !important;
 }
+/* try to make the table scrolling  */
+/* .result-body .container .dataTables_wrapper .dt-row :first-child{
+	
+	overflow-x: scroll;
+background-color: rebeccapurple;
+} */

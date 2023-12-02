@@ -1,4 +1,4 @@
-<footer>
+<footer >
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3">
@@ -51,7 +51,7 @@
 			</div>
 			<div id="sub-footer">
 				<div class="container">
-					<div class="row">
+					<div class="row" style="margin-bottom:0;">
 						<div class="col-lg-6">
 							<div class="copyright">
 								<p>

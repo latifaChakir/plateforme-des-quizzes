@@ -160,7 +160,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                         <!-- Table Header -->
                                         <thead>
                                             <tr class="bg-light">
-                                            <th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>
+                                            <th scope="col" width="5%"></th>
                                                 <th scope="col" width="5%">cours</th>
                                                 <th scope="col" width="20%">note</th>
                                                 <th scope="col" width="10%">Status</th>
@@ -172,11 +172,6 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                            $cours_req="SELECT cours_name from cours ORDER by cours_name";
                                            $AfficherResult_cours = mysqli_query($conn, $cours_req);
                                            
-                                       
-                                          
-                                           // display notes 
-                                            
-                                           
 
                                            while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)){
                                             $coursName=$result_cours['cours_name'];
@@ -184,10 +179,11 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                             echo '<th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>';
                                                 echo '<td>'.$coursName.'</td>';
                                                 
-                                                $note_req=" SELECT  R.cours_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $student_id and cours_name= '$coursName' order by C.cours_name";
+                                                $note_req=" SELECT  R.cours_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $student_id WHERE cours_name= '$coursName' order by C.cours_name";
                                                 $AfficherResult_note= mysqli_query($conn, $note_req);
                                                 $result_note = mysqli_fetch_assoc($AfficherResult_note);
                                                 $u_note= $result_note['cours_note'];
+                                                
                                                 if( $u_note != NULL){
                                                   $u_note= $result_note['cours_note'];
                                                 }else{
@@ -196,27 +192,23 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                                 echo'<td style="text-align:center;">';
                                                 echo$u_note;
                                                 echo'</td>';
-                                                echo '<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">Paid</span></td>';
-                                               
+                                             if( $result_note['cours_note'] != NULL ){
+                                              if($u_note >= 10 ){
+                                                 echo '<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">Paid</span></td>';
+                                              }
+                                             else if($u_note < 10 ){
+                                                echo'<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1">Failed</span></td>';
+                                              }
+                                             }
+                                                else{
+                                                  echo'<td><a href="#"><button class="readCours-btn">quiez</button></a></td>';
+                                                }
+
                                                 echo' </tr>';
-                                               
-                                                
-
-                                              
-                                               
-
                                            }
-                                           
 
-                                        
                                           ?>
-                                            <tr>
-                                            <th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>
-                                              <td>js</td>
-                                              <td>8.5</td>
-                                              <td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1">Failed</span></td>
-                                              
-                                            </tr>
+                                         
                                         </tbody>
                                     </table>
                                 </div>
@@ -235,7 +227,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?php echo $result_student_name['user_+name']; ?>
+                    <?php echo $result_student_name['user_name']; ?>
                     </div>
                   </div>
                   <hr>

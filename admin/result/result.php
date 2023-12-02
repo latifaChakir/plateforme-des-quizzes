@@ -1,8 +1,4 @@
 
-
-
-
-
 <?php 
 require '../../connect.php';
 
@@ -48,19 +44,20 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
 
 	
 </head>
-<body>
+<body class="result-body">
     <!-- start nav -->
     <?php include '../../nav.php';?>
     <!-- end nav -->
 <!-- -------------------------------------------------------------------------------------------------- -->
 <div class="container">
 <h3 id="xo">RESULT OF STUDENTS</h1>
-<table id="example" class="table table-striped" style="width:100%">
+
+<table id="example" class="table table-striped" style="width:100%;overflow-x: scroll;">
   <thead>
     <tr>
       <?php 
       
-      echo '<th scope="col" id="student-name">student name</th>';
+      echo '<th scope="col" id="student-name" style="width: 338.725px !important;">student name</th>';
      
       while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)) {
         echo '<th scope="col" id="mb">';
@@ -78,11 +75,14 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
  
     //  get info of users 
       while ($result_user = mysqli_fetch_assoc($AfficherResult_user)) {
+        $user_id_note=$result_user['user_id'];
         // display the name of user 
         echo'<tr>';
-        echo'<th scope="row">';
-        echo $result_user['user_name'];
-        echo'</th>';
+        echo'<th scope="row" style="width: 473.725px !important;">';
+        
+        echo '<a href="porfile.php?studentid='. $user_id_note.'" style="text-decoration:none;color:#14A085; margin-right:5px;"><i class="fa-regular fa-user"></i></a><span style="font-size: small;">'.$result_user['user_name'];
+       
+        echo'</span></th>';
 
          $user_id_note=$result_user['user_id'];
       //  get the notes of user 
@@ -92,7 +92,6 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
           die('Error in user query: ' . mysqli_error($conn));
         }
         // display notes 
-        // echo'<td></td>';
          
         while ($result_note = mysqli_fetch_assoc($AfficherResult_note)) {
 
@@ -103,7 +102,7 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
         }else{
           $u_note="no note";
         }
-          echo'<td>';
+          echo'<td style="text-align:center;">';
           echo$u_note;
           echo'</td>';
           
@@ -115,8 +114,14 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
         $sum_req="SELECT SUM(cours_note) AS some FROM resultat WHERE user_id = $user_id_note";
         $AfficherResult_sum= mysqli_query($conn, $sum_req);
         $result_sum = mysqli_fetch_assoc($AfficherResult_sum);
-        $total=$result_sum['some']/$result_num_of_note['num_of_note'];
-        echo'<td>';
+
+        if($result_num_of_note['num_of_note'] !=0 && $result_sum['some'] !=NULL ){
+            $total=$result_sum['some']/$result_num_of_note['num_of_note'];
+        }
+      else{
+        $total="no note";
+      }
+        echo'<td style="text-align:center;">';
           echo$total;
           echo'</td>';
           echo '</tr>';
