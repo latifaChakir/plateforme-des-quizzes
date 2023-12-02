@@ -60,14 +60,14 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
     <tr>
       <?php 
       
-      echo '<th scope="col" id="student-name">student name<th>';
+      echo '<th scope="col" id="student-name">student name</th>';
      
       while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)) {
         echo '<th scope="col" id="mb">';
         echo $result_cours['cours_name'];
         echo '</th>';
       }
-      echo '<th scope="col" id="mb">MOYENNE<th>';
+      echo '<th scope="col" id="mb">MOYENNE</th>';
       ?>
      
     </tr>
@@ -92,7 +92,7 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
           die('Error in user query: ' . mysqli_error($conn));
         }
         // display notes 
-        echo'<td></td>';
+        // echo'<td></td>';
          
         while ($result_note = mysqli_fetch_assoc($AfficherResult_note)) {
 
