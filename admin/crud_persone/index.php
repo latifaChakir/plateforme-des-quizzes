@@ -32,7 +32,7 @@ body {
 }
 .table-title {        
 	padding-bottom: 15px;
-	background: #435d7d;
+	background: #14A085;
 	color: #fff;
 	padding: 16px 30px;
 	min-width: 100%;
@@ -43,6 +43,7 @@ body {
 	margin: 5px 0 0;
 	font-size: 21px;
     font-family: ui-sans-serif;
+	color: snow;
 }
 .table-title .btn-group {
 	float: right;
@@ -57,6 +58,7 @@ body {
 	border: none;
 	outline: none !important;
 	margin-left: 10px;
+	border-radius: 35px;
 }
 .table-title .btn i {
 	float: left;
@@ -304,7 +306,7 @@ $(document).ready(function()    {
 						<h2>Manage <b>user</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="modale_ajout.php" class="btn btn-success " data-toggle="modal"> <span>new user</span></a>
+						<a href="add_user.php" class="btn btn-success " data-toggle="modal"> <span>new user</span></a>
 						
 					</div>
 				</div>
@@ -355,11 +357,12 @@ $(document).ready(function()    {
 						<td>'.$role_name.'</td>
 						
 						<td>
+						<a href="update_user.php?id='.$user_id.'"><i class="fa-solid fa-pen-to-square"></i>update</a>					
+						<td>
 						  
-						<a href="updat.php?id="><i class="fa-solid fa-pen-to-square"></i>update</a>
 						
+						<a href="delete_user.php?id='.$user_id.'"><i class="fa-solid fa-pen-to-square"></i>delete</a>
 						</td>
-						<td><a href="delet.php?id="><i class="fa-solid fa-trash"></i></a>delete</td>						
 					</tr>';
 				}
 				

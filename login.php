@@ -6,6 +6,8 @@ $dbUser = "root";
 $dbPass = "";
 $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
+
+
 if (!$conn) {
     die("Something went wrong: " . mysqli_connect_error());
   }
@@ -17,13 +19,14 @@ if (!$conn) {
     // Sanitize and retrieve the username and password from the form
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+    // $password_hashed = password_hash($password, PASSWORD_DEFAULT);
     
     // Perform a query to check if the username and password match
-    $query = "SELECT * FROM autority_user inner JOIN personne ON autority_user.user_id=personne.user_id WHERE user_name = '$username' AND password_user = '$password'";
+    $query = "SELECT * FROM autority_user inner JOIN personne ON autority_user.user_id=personne.user_id WHERE user_name = '$username' ";
     $result = mysqli_query($conn, $query);
     $count = mysqli_num_rows($result);
     $row=mysqli_fetch_array($result);
+ 
     
     
     if ($count == 0) {
@@ -33,17 +36,18 @@ if (!$conn) {
       
     
     } else {
+      
         // Username and password match, redirect to the desired page
-       if(password_verify($password ,$password_hashed)){
+        $password_hashed=$row['password_user'];
 
-         if($row['role_name']=='admin'){
-           header('Location: ./admin/home.html');
-           echo "<script>
-           console.log('<?php echo $password_hashed; ?>');
-         </script>";
+       if(password_verify($password ,$password_hashed )& $row['role_name']=='admin'){
+
+        
+           header('Location:./admin/Home.html');
+        
            exit();
        
-         }elseif ($row['role_name']=='user') {
+         }elseif ($row['role_name']=='student'& password_verify($password ,$password_hashed ) ) {
            header('Location: ./student/Home.html');
            exit();
          }
@@ -52,7 +56,7 @@ if (!$conn) {
        }
       
     }
-}
+
 ?>
 
 <!DOCTYPE html>

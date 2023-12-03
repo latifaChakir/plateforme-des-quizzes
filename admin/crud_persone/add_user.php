@@ -6,10 +6,11 @@ if (isset($_POST['submit'])) {
     $user_name = $_POST['user_name'];
     $email = $_POST['email'];
     $password_user = $_POST['password_user'];
+    $hashpwd=password_hash($password_user,PASSWORD_DEFAULT);
     $role = $_POST['role'];
  
     // Insert data into the personne table
-    $query = "INSERT INTO personne (user_name, email, password_user) VALUES ('$user_name', '$email', '$password_user')";
+    $query = "INSERT INTO personne (user_name, email, password_user) VALUES ('$user_name', '$email', '$hashpwd')";
    
     // Execute the query
     $result = mysqli_query($conn, $query);
