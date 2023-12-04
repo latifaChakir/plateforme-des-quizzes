@@ -2085,7 +2085,10 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 	color: white;
 } 
 #xo{
-	COLOR: GREEN; text-align: center;
+	COLOR: rgb(255, 255, 255); text-align: center;
+	padding: 25px 0;
+	background-color: #11967C;
+	font-weight: 800;
 }
 #student-name{
 

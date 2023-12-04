@@ -49,15 +49,16 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
     <?php include '../../nav.php';?>
     <!-- end nav -->
 <!-- -------------------------------------------------------------------------------------------------- -->
+<h3 id="xo">RESULTs OF STUDENTS</h1>
 <div class="container">
-<h3 id="xo">RESULT OF STUDENTS</h1>
+
 
 <table id="example" class="table table-striped" style="width:100%;overflow-x: scroll;">
   <thead>
     <tr>
       <?php 
       
-      echo '<th scope="col" id="student-name" style="width: 338.725px !important;">student name</th>';
+      echo '<th scope="col" id="student-name" style=" width: 179.725px !important;">student name</th>';
      
       while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)) {
         echo '<th scope="col" id="mb">';
@@ -78,7 +79,7 @@ $AfficherResult_cours = mysqli_query($conn, $cours_req);
         $user_id_note=$result_user['user_id'];
         // display the name of user 
         echo'<tr>';
-        echo'<th scope="row" style="width: 473.725px !important;">';
+        echo'<th scope="row" >';
         
         echo '<a href="porfile.php?studentid='. $user_id_note.'" style="text-decoration:none;color:#14A085; margin-right:5px;"><i class="fa-regular fa-user"></i></a><span style="font-size: small;">'.$result_user['user_name'];
        

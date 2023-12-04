@@ -29,8 +29,9 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
     <title>Document</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  
-    
+   
+    <!-- Inclure Chart.js depuis le CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom CSS -->
     <link href="../../css/style.css" rel="stylesheet" />
     <style>
@@ -169,17 +170,22 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                         <!-- Table Body -->
                                         <tbody>
                                           <?php 
-                                           $cours_req="SELECT cours_name from cours ORDER by cours_name";
+                                           $cours_req="SELECT * from cours ORDER by cours_name";
                                            $AfficherResult_cours = mysqli_query($conn, $cours_req);
                                            
+                                           $coursData = array();  // Tableau pour stocker les noms des cours
+                                           $normalNoteData = array();
+                                           $rattNoteData = array();
 
                                            while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)){
                                             $coursName=$result_cours['cours_name'];
+                                            $cours_id=$result_cours['cours_id'];
+                                            
                                             echo ' <tr>';
                                             echo '<th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>';
                                                 echo '<td>'.$coursName.'</td>';
                                                 
-                                                $note_req=" SELECT  R.cours_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $student_id WHERE cours_name= '$coursName' order by C.cours_name";
+                                                $note_req=" SELECT  R.cours_note,R.normal_note,ratt_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $student_id WHERE cours_name= '$coursName' order by C.cours_name";
                                                 $AfficherResult_note= mysqli_query($conn, $note_req);
                                                 $result_note = mysqli_fetch_assoc($AfficherResult_note);
                                                 $u_note= $result_note['cours_note'];
@@ -205,7 +211,35 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                                 }
 
                                                 echo' </tr>';
+                                                // check the normal note  
+                                                $normal_note= $result_note['normal_note'];
+                                                
+                                                if( $normal_note != NULL){
+                                                  $normal_note= $result_note['normal_note'];
+                                                }else{
+                                                  $normal_note="no note";
+                                                }
+                                                  // check the ratt note  
+                                                  $ratt_note= $result_note['ratt_note'];
+                                                
+                                                  if( $ratt_note != NULL){
+                                                    $ratt_note= $result_note['ratt_note'];
+                                                  }else{
+                                                    $ratt_note="no note";
+                                                  }
+                                                  // insert the value of coure note 
+
+                                                $coursData[] = $result_cours['cours_name'];
+                                                $normalNoteData[]= $result_note['normal_note'];
+                                                $rattNoteData[]= $result_note['ratt_note'];
+                                                                                          
                                            }
+                                          
+                                        
+                                          // Convertir le tableau PHP en format JSON
+                                          $coursDataJSON = json_encode($coursData);
+                                          $normalNoteDataJSON= json_encode($normalNoteData);
+                                          $rattNoteDataJSON= json_encode($rattNoteData);
 
                                           ?>
                                          
@@ -272,55 +306,17 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
+                      
+                    <div style="width: 400px; height: 400px;">
+        <canvas id="radarChart"></canvas>
+    </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
+                      
                   </div>
                 </div>
               </div>
@@ -329,8 +325,53 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
 
         </div>
     </div>
-    <?php include '../../footer.php'?>
+   
 
+ 
+
+    <script> 
+        
+        var coursData = <?php echo $coursDataJSON; ?>;
+        var normalNoteData = <?php echo $normalNoteDataJSON; ?>;
+        var rattNoteData = <?php echo $rattNoteDataJSON; ?>;
+
+        // Récupérer le contexte du canvas
+        var ctx = document.getElementById('radarChart').getContext('2d');
+
+        // Données pour la courbe radar
+        var radarData = {
+            labels: coursData,
+            datasets: [{
+                label: 'Session Normale',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                data: normalNoteData
+            }, {
+                label: 'Session Rattrapage',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                data: rattNoteData
+            }]
+        };
+
+        // Options de la courbe radar
+        var options = {
+            scale: {
+                ticks: {
+                    beginAtZero: true
+                }
+            }
+        };
+        // Créer la courbe radar
+        var radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: radarData,
+            options: options
+        });
+    </script>
+
+ 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <?php include '../../footer.php'?>
 </body>
 </html>
