@@ -58,3 +58,13 @@ CREATE table Reponses (
     qst_id int,
     foreign key (qst_id) references Questions(qst_id) ON UPDATE CASCADE ON DELETE CASCADE 
 );
+
+
+CREATE table progression (
+    id_progress INT PRIMARY KEY AUTO_INCREMENT,
+    user_id int,
+    cours_id int,
+    progress int,
+    foreign key (user_id) references Personne(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    foreign key (cours_id) references Cours(cours_id) ON UPDATE CASCADE ON DELETE CASCADE 
+);

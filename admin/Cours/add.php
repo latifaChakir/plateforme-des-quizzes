@@ -1,11 +1,11 @@
 <?php
-include('../connect.php');
+include('../../connect.php');
 $name = $_POST['cours_name'];
 $url = $_POST['url'];
-$progress=$_POST['progress'];
+
 
 // Insert data into the database
-$sql = "INSERT INTO cours (cours_name, cours_content,progress_cours) VALUES ('$name', '$url','$progress')";
+$sql = "INSERT INTO cours (cours_name, cours_content) VALUES ('$name', '$url')";
 
 if ($conn->query($sql) === TRUE) {
     header("Location: cours.php");

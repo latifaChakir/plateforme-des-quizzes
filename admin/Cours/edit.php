@@ -22,7 +22,7 @@
 
     <?php
     if (isset($_GET['id'])) {
-        include("../connect.php");
+        include("../../connect.php");
         $id = $_GET['id'];
         $sql = "SELECT * FROM cours WHERE cours_id=$id";
         $result = mysqli_query($conn, $sql);
@@ -34,8 +34,7 @@
         $id = $_GET['id'];
         $nom = htmlspecialchars($_POST["cours_name"]);
         $url = htmlspecialchars($_POST["url"]);
-        $progress = htmlspecialchars($_POST["progress"]);
-        $sqlUpdate = "UPDATE cours SET cours_name = '$nom', cours_content=' $url',progress_cours=' $progress' WHERE cours_id='$id'";
+        $sqlUpdate = "UPDATE cours SET cours_name = '$nom', cours_content=' $url' WHERE cours_id='$id'";
         $result = mysqli_query($conn, $sqlUpdate);
 
         if ($result) {
@@ -56,16 +55,15 @@
                     required>
             </div>
             <div class="form-group">
-                <label>Lien vers le cours</label>
-                <input type="text" class="form-control" name="url" value="<?php echo $row['cours_content'] ?>" required>
+                <label>Contenu du cours</label>
+                <textarea class="form-control" type="text" name="url"
+                    required><?php echo $row['cours_content']; ?></textarea>
             </div>
-            <div class="form-group">
-                <label>Progress du cours</label>
-                <input type="number" class="form-control" name="progress" value="<?php echo $row['progress_cours'] ?>"
-                    required>
-            </div>
+
+
             <div class="modal-footer">
-            <a href="cours.php"><input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel"></a>
+                <a href="cours.php"><input type="button" class="btn btn-default" data-bs-dismiss="modal"
+                        value="Cancel"></a>
                 <input type="submit" class="btn btn-success" value="Add">
             </div>
         </form>
