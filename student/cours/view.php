@@ -81,7 +81,7 @@ if (isset($_GET['id'])) {
             });
         }
 
-        
+
         setInterval(function () {
             var currentProgress = $(window).scrollTop();
             var progressKey = 'userProgress_' + loggedInUserId + '_' + courseId;
@@ -113,7 +113,7 @@ if (isset($_GET['id'])) {
                             <li class="active"><a href="home.html">Home</a></li>
                             <li><a href="cours.html">Courses</a></li>
                             <li><a href="result.html">Result</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="student/contact.html">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -150,6 +150,13 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </section>
+    <div class="service_btn center" style="display:flex; justify-content:center;margin-bottom:20px">
+        <a href="passQuiz.php?id=<?php echo $row['cours_id']; ?>" style="border-radius: 10px;"
+            class="btn btn-lg-square waves-effect waves-orange">Pass
+            Quise
+        </a>
+
+    </div>
     <?php include("../../footer.php"); ?>
 
 

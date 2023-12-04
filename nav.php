@@ -9,10 +9,10 @@
                 </div>
                 <div >
                     <ul class="nav list-nav " >
-                        <li class="active"><a href="../home.html">Home</a></li>
+                        <li class="active"><a href="../../admin/home.html">Home</a></li>
                         <li ><a href="../cours/cours.php">Courses</a></li>
                         <li><a href="result.html">Result</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="../../admin/contact.html">Contact</a></li>
 
                     </ul>
                 </div>

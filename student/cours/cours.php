@@ -47,10 +47,10 @@ session_start();
 					</div>
 					<div class="navbar-collapse collapse ">
 						<ul class="nav navbar-nav">
-							<li><a href="home.html">Home</a></li>
+							<li><a href="../../student/home.html">Home</a></li>
 							<li  class="active"><a href="../cours/cours.php">Courses</a></li>
 							<li><a href="result.html">Result</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="../../student/contact.html">Contact</a></li>
 
 						</ul>
 					</div>

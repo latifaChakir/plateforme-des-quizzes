@@ -1,22 +1,22 @@
 <?php
-    if (isset($_GET['id'])) {
-        include("../../connect.php");
-        $id = $_GET['id'];
-        $sql = "SELECT * FROM cours WHERE cours_id=$id";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($result);
+if (isset($_GET['id'])) {
+    include("../../connect.php");
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM cours WHERE cours_id=$id";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
 
-    }
+}
 
 
-    $conn->close();
-    ?>
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <title>Above Multi-purpose Free Bootstrap Responsive Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
@@ -89,9 +89,11 @@
             </div>
         </div>
     </section>
+           
     <?php include("../../footer.php"); ?>
 
 
 
 </body>
+
 </html>
