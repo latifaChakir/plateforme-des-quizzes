@@ -1,5 +1,5 @@
 <?php
-// hèèèèèèèèèèèèéééééééééééééééé
+
 $dbName = "quizes";
 $dbHost = "localhost";
 $dbUser = "root";
@@ -14,19 +14,25 @@ if (!$conn) {
   
   if (isset($_POST['submit'])) {
     
-    
+    session_start();
+
     
     // Sanitize and retrieve the username and password from the form
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     // $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+    # session 
+    
     
     // Perform a query to check if the username and password match
     $query = "SELECT * FROM autority_user inner JOIN personne ON autority_user.user_id=personne.user_id WHERE user_name = '$username' ";
     $result = mysqli_query($conn, $query);
     $count = mysqli_num_rows($result);
     $row=mysqli_fetch_array($result);
- 
+    
+  
+          $_SESSION['id'] = $row['user_id'];
+   
     
     
     if ($count == 0) {
@@ -43,7 +49,7 @@ if (!$conn) {
        if(password_verify($password ,$password_hashed )& $row['role_name']=='admin'){
 
         
-           header('Location:./admin/Home.html');
+           header('Location:./admin/crud_persone/index.php');
         
            exit();
        

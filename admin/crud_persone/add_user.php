@@ -1,29 +1,79 @@
 <?php
 include('../../connect.php');
 
+// if (isset($_POST['submit'])) {
+//     // Retrieve form data
+//     $user_name = htmlspecialchars(trim($_POST['user_name'])) ;
+//     $email =htmlspecialchars(trim($_POST['email']));
+
+//     $password_user = htmlspecialchars(trim($_POST['password_user']));
+//     $hashpwd=password_hash($password_user,PASSWORD_DEFAULT);
+//     $role = $_POST['role'];
+    
+
+    
+//     // Insert data into the personne table
+//     $query = "INSERT INTO personne (user_name, email, password_user) VALUES ('$user_name', '$email', '$hashpwd')";
+   
+//     // Execute the query
+//     $result = mysqli_query($conn, $query);
+    
+//     // Check if the query executed successfully
+//     if ($result) {
+//         // Get the last inserted user_id
+//         $user_id = mysqli_insert_id($conn);
+        
+//         // Insert data into the autority_user table
+//         $rol_insert = "INSERT INTO autority_user (role_name, user_id) VALUES ('$role', $user_id)";
+//         $rol_result = mysqli_query($conn, $rol_insert);
+        
+//         // Check if the query executed successfully
+//         if ($rol_result) {
+//             echo 'add success';
+//         } else {
+//             echo 'invalid';
+//         }
+//     } else {
+//         echo 'invalid';
+//     }
+// }
+ 
 if (isset($_POST['submit'])) {
     // Retrieve form data
-    $user_name = $_POST['user_name'];
-    $email = $_POST['email'];
-    $password_user = $_POST['password_user'];
+    $user_name = htmlspecialchars(trim($_POST['user_name'])) ;
+    $email =htmlspecialchars(trim($_POST['email']));
+    $password_user = htmlspecialchars(trim($_POST['password_user']));
     $hashpwd=password_hash($password_user,PASSWORD_DEFAULT);
     $role = $_POST['role'];
- 
+
+
+    // $valid_email=filter_var($email,FILTER_VALIDATE_EMAIL);
+    
+    
     // Insert data into the personne table
     $query = "INSERT INTO personne (user_name, email, password_user) VALUES ('$user_name', '$email', '$hashpwd')";
    
-    // Execute the query
-    $result = mysqli_query($conn, $query);
-    
-    // Check if the query executed successfully
-    if ($result) {
-        // Get the last inserted user_id
-        $user_id = mysqli_insert_id($conn);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo 'Invalid email address.';
+    }else{
         
-        // Insert data into the autority_user table
-        $rol_insert = "INSERT INTO autority_user (role_name, user_id) VALUES ('$role', $user_id)";
-        $rol_result = mysqli_query($conn, $rol_insert);
+        $result = mysqli_query($conn, $query);
         
+        // Execute the query
+        
+        // Check if the query executed successfully
+        if ($result) {
+            
+            
+            
+            // Get the last inserted user_id
+            $user_id = mysqli_insert_id($conn);
+            
+            // Insert data into the autority_user table
+            $rol_insert = "INSERT INTO autority_user (role_name, user_id) VALUES ('$role', $user_id)";
+            $rol_result = mysqli_query($conn, $rol_insert);
+            
+            
         // Check if the query executed successfully
         if ($rol_result) {
             echo 'add success';
@@ -33,6 +83,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo 'invalid';
     }
+}
 }
 ?>
 
@@ -99,20 +150,17 @@ if (isset($_POST['submit'])) {
         <h2>Add User</h2>
         <form action="" method="POST" id="form">
             <label for="user_name" class="label">User Name</label>
-            <input type="text" name="user_name" id="user_name" class="input-field">
+            <input required type="text" name="user_name" id="user_name" class="input-field" >
             
             <label for="email" class="label">Email</label>
-            <input type="text" name="email" id="email" class="input-field">
+            <input type="text" name="email" id="email" class="input-field"required>
             
             <label for="password_user" class="label">Password</label>
-            <input type="password" name="password_user" id="password_user" class="input-field">
+            <input type="password" name="password_user" id="password_user" class="input-field"required >
             
             <label for="role" class="label">Role</label>
-            <select name="role" id="role" class="input-field">
-              
-             
-               
-            
+            <select name="role" id="role" class="input-field"required >
+
                     
                     <option value="student"> student </option>
                     <option value="admin"> admin </option>
