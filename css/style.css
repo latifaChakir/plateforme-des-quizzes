@@ -2100,3 +2100,15 @@ width: 260px !important;
 	overflow-x: scroll;
 background-color: rebeccapurple;
 } */
+  .card-note-profil{
+	max-height: 26.8rem; 
+	overflow-y: scroll;
+	
+  }
+  .card-note-profil::-webkit-scrollbar {
+	display: none; /* Hide scrollbar for Webkit (Chrome, Safari, Opera) */
+  }
+  .failed{
+	text-decoration: none;
+	color: #000;
+  }

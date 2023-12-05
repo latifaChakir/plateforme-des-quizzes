@@ -127,6 +127,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
 <body>
     <!-- Start Header -->
     <?php include '../../nav.php' ?>
+    
     <!-- End Header -->
 
     <div class="container">
@@ -153,7 +154,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                     <div class="card mt-3">
                         <div class="list-group list-group-flush">
                             <!-- Card Table of Notes -->
-                            <div class="container mt-5 px-2">
+                            <div class="container mt-5 px-2 card-note-profil" >
                               <h4 style="color:#14A085; text-align:center;">my cours</h4>
                                 
                                 <div class="table-responsive">
@@ -163,7 +164,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                             <tr class="bg-light">
                                             <th scope="col" width="5%"></th>
                                                 <th scope="col" width="5%">cours</th>
-                                                <th scope="col" width="20%">note</th>
+                                                <th scope="col" width="20%" style="text-align:center;">note</th>
                                                 <th scope="col" width="10%">Status</th>
                                             </tr>
                                         </thead>
@@ -181,36 +182,15 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                             $coursName=$result_cours['cours_name'];
                                             $cours_id=$result_cours['cours_id'];
                                             
-                                            echo ' <tr>';
-                                            echo '<th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>';
-                                                echo '<td>'.$coursName.'</td>';
+                                            
                                                 
-                                                $note_req=" SELECT  R.cours_note,R.normal_note,ratt_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $student_id WHERE cours_name= '$coursName' order by C.cours_name";
+                                                $note_req=" SELECT R.normal_note,ratt_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $student_id WHERE cours_name= '$coursName' order by C.cours_name";
                                                 $AfficherResult_note= mysqli_query($conn, $note_req);
                                                 $result_note = mysqli_fetch_assoc($AfficherResult_note);
-                                                $u_note= $result_note['cours_note'];
+                                               
                                                 
-                                                if( $u_note != NULL){
-                                                  $u_note= $result_note['cours_note'];
-                                                }else{
-                                                  $u_note="no note";
-                                                }
-                                                echo'<td style="text-align:center;">';
-                                                echo$u_note;
-                                                echo'</td>';
-                                             if( $result_note['cours_note'] != NULL ){
-                                              if($u_note >= 10 ){
-                                                 echo '<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">Paid</span></td>';
-                                              }
-                                             else if($u_note < 10 ){
-                                                echo'<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1">Failed</span></td>';
-                                              }
-                                             }
-                                                else{
-                                                  echo'<td><a href="#"><button class="readCours-btn">quiez</button></a></td>';
-                                                }
-
-                                                echo' </tr>';
+                                                
+                                               
                                                 // check the normal note  
                                                 $normal_note= $result_note['normal_note'];
                                                 
@@ -228,21 +208,61 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                                     $ratt_note="no note";
                                                   }
                                                   // insert the value of coure note 
+                                                  if($normal_note != "no note" && $ratt_note != "no note" ){
+                                                    if($normal_note >= $ratt_note){
+                                                      $u_note=$normal_note ;
+                                                    }
+                                                    else if($normal_note < $ratt_note){
+                                                      $u_note=$ratt_note ;
+                                                    }
+                                                  }
+                                                  else if($normal_note == "no note" && $ratt_note == "no note" ){
+                                                    $u_note = "no note";
+                                                  }
+                                                  else if($normal_note != "no note" && $ratt_note == "no note" ){
+                                                    $u_note = $normal_note;
+                                                  }
+                                                  else if($normal_note == "no note" && $ratt_note != "no note" ){
+                                                    $u_note = $ratt_note;
+                                                  }
 
+                                                  // print the value of the cours note 
+                                                  echo ' <tr>';
+                                                 echo '<th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>';
+                                                echo '<td>'.$coursName.'</td>';
+
+                                                  echo'<td style="text-align:center;">';
+                                                  echo$u_note;
+                                                  echo'</td>';
+                                               if( $u_note != "no note" ){
+                                                if($u_note >= 10 ){
+                                                   echo '<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">valide</span></td>';
+                                                }
+                                               else if($u_note < 10 && $ratt_note == "no note" ){
+                                                  echo'<td><i class="fa fa-dot-circle-o text-danger"></i><a href="#" class="failed"><span class="ms-1"  >Failed</span></a></td>';
+                                                }
+                                                else if($u_note < 10 && $ratt_note != "no note" ){
+                                                  echo'<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1" >Failed</span></td>';
+                                                }
+                                               }
+                                                  else{
+                                                    echo'<td><a href="#"><button class="readCours-btn">quiez</button></a></td>';
+                                                  }
+  
+                                                  echo' </tr>';
                                                 $coursData[] = $result_cours['cours_name'];
                                                 $normalNoteData[]= $result_note['normal_note'];
                                                 $rattNoteData[]= $result_note['ratt_note'];
                                                                                           
                                            }
                                           
-                                        
+                                          
                                           // Convertir le tableau PHP en format JSON
                                           $coursDataJSON = json_encode($coursData);
                                           $normalNoteDataJSON= json_encode($normalNoteData);
                                           $rattNoteDataJSON= json_encode($rattNoteData);
 
-                                          ?>
-                                         
+                                          ?>                                        
                                         </tbody>
                                     </table>
                                 </div>
@@ -275,25 +295,6 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      (239) 816-9029
-                    </div>
-                  </div>
-                 
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info " style ="background-color:#14A085 !important; border: 1px solid;"target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
                     </div>
@@ -303,29 +304,30 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
 <!-- end card of student info  -->
 <!-- start progresion  -->
               <div class="row gutters-sm">
-                <div class="col-sm-6 mb-3">
-                  <div class="card h-100">
+                <div class="col-sm-12 " >
+                  <div class="card d-flex justify-content-center align-items-center" style="height: 34rem;">
                     <div class="card-body">
                       
-                    <div style="width: 400px; height: 400px;">
-        <canvas id="radarChart"></canvas>
-    </div>
+                    <div style="width: 520px; height: 520px;">
+                         <canvas id="radarChart"></canvas>
+                    </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-6 mb-3">
+                <!-- <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
                       
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
 
         </div>
     </div>
-   
+  </div>
+                                          
 
  
 
