@@ -1,5 +1,5 @@
 <?php
-include('../connect.php');
+include('../../connect.php');
 
 if (isset($_GET["qst_id"])) {
     $id = $_GET["qst_id"];
@@ -33,10 +33,10 @@ if (isset($_GET["qst_id"])) {
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-	<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="../css/jcarousel.css" rel="stylesheet" />
-	<link href="../css/flexslider.css" rel="stylesheet" />
-	<link href="../css/style.css" rel="stylesheet" />
+	<link href="../../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="../../css/jcarousel.css" rel="stylesheet" />
+	<link href="../../css/flexslider.css" rel="stylesheet" />
+	<link href="../../css/style.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css.css">
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -48,7 +48,7 @@ if (isset($_GET["qst_id"])) {
 	<div id="wrapper">
 
 		<!-- start header -->
-		<?php include '../nav.php'?>
+		<?php include '../../nav.php'?>
 		<!-- end header -->
 		<section id="inner-headline">
 			<div class="container">
@@ -103,7 +103,7 @@ if (isset($_GET["qst_id"])) {
 
 	
 
-		<?php include '../footer.php'?>
+		<?php include '../../footer.php'?>
 	</div>
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 

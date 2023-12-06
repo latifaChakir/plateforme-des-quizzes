@@ -10,7 +10,6 @@
 	<meta name="description" content="" />
 	<meta name="author" content="http://webthemez.com" />
 
-
 	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -19,10 +18,10 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-	<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="../css/jcarousel.css" rel="stylesheet" />
-	<link href="../css/flexslider.css" rel="stylesheet" />
-	<link href="../css/style.css" rel="stylesheet" />
+	<link href="../../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="../../css/jcarousel.css" rel="stylesheet" />
+	<link href="../../css/flexslider.css" rel="stylesheet" />
+	<link href="../../css/style.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css.css">
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -34,7 +33,7 @@
 	<div id="wrapper">
 
 		<!-- start header -->
-		<?php include '../nav.php'?>
+		<?php include '../../nav.php'?>
 		<!-- end header -->
 		<section id="inner-headline">
 			<div class="container">
@@ -98,7 +97,7 @@
 
 	
 
-		<?php include '../footer.php'?>
+		<?php include '../../footer.php'?>
 	</div>
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 

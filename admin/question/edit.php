@@ -1,6 +1,6 @@
 <?php
 
-include('../connect.php');
+include('../../connect.php');
 
 $qst_edit = $_POST['qst_id'];
 

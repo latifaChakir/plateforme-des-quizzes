@@ -1,5 +1,5 @@
 <?php 
-include('../connect.php');
+include('../../connect.php');
 $sql = "SELECT questions.* , reponses.rep_id idqst , reponses.rep1 rep1 , reponses.rep2 rep2 , reponses.rep3 rep3 , reponses.rep4 rep4, reponses.true_rep repT FROM questions 
 INNER JOIN reponses ON questions.qst_id = reponses.qst_id;";
 $result = mysqli_query($conn , $sql );
@@ -45,10 +45,10 @@ $num_qst = 0;
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-	<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="../css/jcarousel.css" rel="stylesheet" />
-	<link href="../css/flexslider.css" rel="stylesheet" />
-	<link href="../css/style.css" rel="stylesheet" />
+	<link href="../../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="../../css/jcarousel.css" rel="stylesheet" />
+	<link href="../../css/flexslider.css" rel="stylesheet" />
+	<link href="../../css/style.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css.css">
 
 	
@@ -56,7 +56,7 @@ $num_qst = 0;
 
 <body>
 	<div id="wrapper">
-		<?php include '../nav.php'?>
+		<?php include '../../nav.php'?>
 		<section id="inner-headline">
 			<div class="container">
 				<div class="row">
@@ -133,7 +133,7 @@ $num_qst = 0;
 </div>
 
 
-	<?php include '../footer.php'?>
+	<?php include '../../footer.php'?>
 	</div>
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 

@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach ($selectedAnswers as $qstId => $selectedAnswer) {
         $content = $selectedAnswer; 
-
-        $sqlInsert = "INSERT INTO reponse_student (content, qstID) VALUES ('$content', $qstId)";
+        $user_id = 2;
+        $sqlInsert = "INSERT INTO reponse_student (content, qstID , user_id) VALUES ('$content', $qstId , $user_id)";
         $resultInsert = mysqli_query($conn, $sqlInsert);
 
         if (!$resultInsert) {   

@@ -191,12 +191,40 @@ function getrepo_ratt($row) {
 
 
     </section>
-    <?php 
-            $sql_reseultat = "INSERT INTO resultat (ratt_note , normal_note)
-            VALUES ($resultALLratt , $resultALL);";
-            $result_done = mysqli_query($conn , $sql_reseultat);
-    ?>  
-    
+    <?php
+        $sql_prsn = "SELECT * FROM personne WHERE user_id = 2";
+        $result_done = mysqli_query($conn, $sql_prsn);
+
+        if ($row = mysqli_fetch_assoc($result_done)) {
+            $sql_reseultat = "SELECT * FROM resultat WHERE user_id = 2";
+            $result_done = mysqli_query($conn, $sql_reseultat) ;
+            if(mysqli_num_rows($result_done) < 1) {
+            
+                    $result_done = mysqli_query($conn, $sql_reseultat);
+            
+                    $sqlADD = "INSERT INTO resultat (ratt_note, normal_note, user_id)
+                            VALUES ($resultALLratt, $resultALL, 2)";
+                    $resADD = mysqli_query($conn, $sqlADD);
+
+                    if (!$resADD) {
+                        echo "Error: " . mysqli_error($conn);
+                    }
+                }
+                else {
+                    $sqlUPDATE = "UPDATE resultat 
+                                SET ratt_note = $resultALLratt,
+                                    normal_note = $resultALL    
+                                WHERE user_id = 2";
+                    $resUPDATE = mysqli_query($conn, $sqlUPDATE);
+        
+                    if (!$resUPDATE) {
+                        echo "Error: " . mysqli_error($conn);
+                    }
+                }
+        } 
+?>
+
+
     <?php include '../footer.php'?>
   </div>
   <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
