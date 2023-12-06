@@ -1,5 +1,5 @@
-CREATE database IF NOT EXISTS quizes;
-use quizes;
+CREATE database IF NOT EXISTS quizesxxxx;
+use quizesxxxx;
 
 
 CREATE TABLE Personne (
@@ -52,25 +52,6 @@ CREATE table Questions (
     cours_id int,
     foreign key (cours_id) references Cours(cours_id) ON UPDATE CASCADE ON DELETE CASCADE 
 );
-
-CREATE table Reponses (
-    rep_id INT PRIMARY KEY AUTO_INCREMENT,
-    rep1 TEXT,
-    rep2 TEXT,
-    rep3 TEXT,
-    rep4 TEXT,
-    true_rep TEXT
-    qst_id int,
-    foreign key (qst_id) references Questions(qst_id) ON UPDATE CASCADE ON DELETE CASCADE 
-);
-CREATE TABLE reponse_student (
-    repo_id INT PRIMARY KEY AUTO_INCREMENT,
-    qstID int,
-    content VARCHAR(255) NOT NULL,
-    ratt VARCHAR(255) not NULL,
-    foreign key (qstID) references Questions(qst_id) ON UPDATE CASCADE ON DELETE CASCADE 
-
-)
 
 
 

@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
     session_start();
-	$student_id=$_SESSION['id'];  // ! you must need get the id of user from login !!!!!!!
+	$student_id=$_SESSION['user_id'];  // ! you must need get the id of user from login !!!!!!!
 
   $student_name_req="SELECT `user_name` FROM personne WHERE `user_id`=$student_id";
   $AfficherResult_student_name = mysqli_query($conn, $student_name_req);
@@ -228,7 +228,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
 
                                                   // print the value of the cours note 
                                                   echo ' <tr>';
-                                                 echo '<th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>';
+                                                 echo '<th scope="col" width="5%"><a href="cours/view.php?id='.$cours_id. '"><button class="readCours-btn">read</button></a></th>';
                                                 echo '<td>'.$coursName.'</td>';
 
                                                   echo'<td style="text-align:center;">';
@@ -239,7 +239,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                                    echo '<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">valide</span></td>';
                                                 }
                                                else if($u_note < 10 && $ratt_note == "no note" ){
-                                                  echo'<td><i class="fa fa-dot-circle-o text-danger"></i><a href="#" class="failed"><span class="ms-1"  >Failed</span></a></td>';
+                                                  echo'<td><i class="fa fa-dot-circle-o text-danger"></i><a href="#" class="failed"><span class="ms-1"  >rattrapage</span></a></td>';
                                                 }
                                                 else if($u_note < 10 && $ratt_note != "no note" ){
                                                   echo'<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1" >Failed</span></td>';

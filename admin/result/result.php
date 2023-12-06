@@ -1,12 +1,12 @@
 
-      <?php 
+<?php 
       require '../../connect.php';
 
       $user_req="SELECT user_name,p.user_id from personne p INNER join  autority_user a on p.user_id=a.user_id WHERE role_name='student'";
       $AfficherResult_user = mysqli_query($conn, $user_req);
 
       $cours_req="SELECT cours_name,cours_id from cours ORDER by cours_name";
-      $AfficherResult_cours = mysqli_query($conn, $cours_req);
+      
       ?>
 
       <!DOCTYPE html>
@@ -64,23 +64,28 @@
           $a=0;
           $b=0;
           $tb_is_repeated = false;
+          $count_repeated = false;
           $reqet="UPDATE resultat SET cours_note = 0 ";
           $conect__reqet= mysqli_query($conn, $reqet);
             while ($result_user = mysqli_fetch_assoc($AfficherResult_user)) {
+              
               $user_id_note=$result_user['user_id'];
+             
             if($a<1){
               echo '<th scope="col" id="student-name" style=" width: 179.725px !important;">student name</th>';
               $a++;
-            }
+            }$AfficherResult_cours = mysqli_query($conn, $cours_req);
               while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)){
-                echo '<th scope="col" id="mb">';
+                if(!$count_repeated ){
+                  echo '<th scope="col" id="mb">';
                 echo $result_cours['cours_name'];
                 echo '</th>';
+                }
 
                 $coursName=$result_cours['cours_name'];
                 $courSID= $result_cours['cours_id'];
                     
-                    $note_req=" SELECT R.normal_note,ratt_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $user_id_note WHERE cours_name= '$coursName' order by C.cours_name";
+                    $note_req=" SELECT R.normal_note,ratt_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = '$user_id_note' WHERE cours_name= '$coursName' order by C.cours_name";
                     $AfficherResult_note= mysqli_query($conn, $note_req);
                     $result_note = mysqli_fetch_assoc($AfficherResult_note);
                   
@@ -119,12 +124,12 @@
                         $u_note = $ratt_note;
                       }
 
-                      
-                    $reqett="UPDATE resultat SET cours_note = $u_note WHERE resultat.user_id = $user_id_note AND resultat.cours_id= $courSID";
-                    $conect__reqett= mysqli_query($conn, $reqett);
+                    $reqett="UPDATE resultat SET cours_note = '$u_note' WHERE resultat.user_id = '$user_id_note' AND resultat.cours_id= $courSID";
+                    $conect__reqett= mysqli_query($conn,$reqett);
 
                 
                   }
+                  $count_repeated =true;
                   if($b<1){
                     echo '<th scope="col" id="mb">MOYENNE</th>';
                     $b++;
@@ -145,7 +150,7 @@
 
               $user_id_note=$result_user['user_id'];
             //  get the notes of user 
-              $note_req=" SELECT  R.cours_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = $user_id_note order by C.cours_name";
+              $note_req=" SELECT  R.cours_note FROM Cours C LEFT JOIN Resultat R ON C.cours_id = R.cours_id AND R.user_id = '$user_id_note' order by C.cours_name";
               $AfficherResult_note= mysqli_query($conn, $note_req);
               if(!$AfficherResult_note){
                 die('Error in user query: ' . mysqli_error($conn));
@@ -167,11 +172,11 @@
                 echo'</td>';
                 
               }
-              $num_of_note_req="SELECT COUNT(cours_note) AS num_of_note FROM resultat WHERE user_id = $user_id_note";
+              $num_of_note_req="SELECT COUNT(cours_note) AS num_of_note FROM resultat WHERE user_id = '$user_id_note'";
               $AfficherResult_num_of_note= mysqli_query($conn, $num_of_note_req);
               $result_num_of_note = mysqli_fetch_assoc($AfficherResult_num_of_note);
 
-              $sum_req="SELECT SUM(cours_note) AS some FROM resultat WHERE user_id = $user_id_note";
+              $sum_req="SELECT SUM(cours_note) AS some FROM resultat WHERE user_id = '$user_id_note'";
               $AfficherResult_sum= mysqli_query($conn, $sum_req);
               $result_sum = mysqli_fetch_assoc($AfficherResult_sum);
 

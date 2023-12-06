@@ -1,5 +1,5 @@
 <?php
-$dbName = "quizes";
+$dbName = "quizesxxxx";
 $dbHost = "localhost";
 $dbUser = "root";
 $dbPass = "";
