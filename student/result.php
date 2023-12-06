@@ -134,7 +134,7 @@ function getrepo_ratt($row) {
                     
                     if($rep_std == $rep_tr){
                         $result_std = 2;
-                        $resultALL+= 10 ;
+                        $resultALL +=  4 ;
                     }
                     else{
                         $result_std = 0;
@@ -142,10 +142,10 @@ function getrepo_ratt($row) {
 
                     if($rep_ratt == $rep_tr){
                         $result_ratt = 2;
-                        $resultALLratt+= 10 ;
+                        $resultALLratt += 4   ;
                     }
                     else{
-                        $result_std = 0;
+                        $result_ratt = 0;
                     }
                     $num_qst += 1;
                 ?>
@@ -183,11 +183,11 @@ function getrepo_ratt($row) {
             </tr>
 
  </tbody>
- <?php 
+    <?php 
         echo "<a href='questionratt.php'><button type='button' class='btn2'>Cliquer Pour Passer Le Rattrapage</button></a>";    
 
-?>
-</table>
+    ?>
+    </table>
 
 
     </section>

@@ -1,7 +1,13 @@
 <?php 
 include('../../connect.php');
+
+if(isset($_GET['cours_id '])){
+  $cour_id = $_GET['cours_id '];
+}
+
+
 $sql = "SELECT questions.* , reponses.rep_id idqst , reponses.rep1 rep1 , reponses.rep2 rep2 , reponses.rep3 rep3 , reponses.rep4 rep4, reponses.true_rep repT FROM questions 
-INNER JOIN reponses ON questions.qst_id = reponses.qst_id;";
+INNER JOIN reponses ON questions.qst_id = reponses.qst_id; WHERE cour_id = $cour_id";
 $result = mysqli_query($conn , $sql );
 
 
@@ -123,7 +129,6 @@ $num_qst = 0;
       </td>      
     
 
-      
     </tr>
    <?php
 }

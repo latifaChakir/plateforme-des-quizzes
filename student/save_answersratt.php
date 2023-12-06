@@ -1,6 +1,8 @@
 <?php
 include('../connect.php');
 
+$user_id = $_SESSION["user_id"] ;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selectedAnswers = json_decode(file_get_contents("php://input"), true);
 
@@ -11,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (mysqli_num_rows($checkResult) > 0) {
             $content = $selectedAnswer;
-            $sqlUpdate = "UPDATE reponse_student SET ratt = '$content' WHERE qstID = $qstId";
+            $sqlUpdate = "UPDATE reponse_student SET ratt = '$content' WHERE qstID = $qstId AND user_id = $user_id";
             $resultUpdate = mysqli_query($conn, $sqlUpdate);
 
             if (!$resultUpdate) {

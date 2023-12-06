@@ -55,6 +55,18 @@ $resultcheck = mysqli_query($conn , $sqlcheck);
     </section>
 
     <section id="secQuezes">
+    
+    <?php 
+      if (($rowcheck = mysqli_fetch_array($resultcheck)) < 1 ) {
+         
+        echo '<div class="alert alert-primary" role="alert">
+              <h4>Tu as passé cet examen De Ratrappage, tu peux voir les résultats</h4>
+            </div>';
+        echo "<a href='result.php'> <button type='button' class = 'btn2'>Voici La Correction</button></a>";        
+      }
+      ?>
+
+
       <?php
         while ($row = mysqli_fetch_array($result)) {
       ?>
@@ -86,13 +98,7 @@ $resultcheck = mysqli_query($conn , $sqlcheck);
       if (($rowcheck = mysqli_fetch_array($resultcheck)) >= 1) {
           echo "<a href='question.php'><button type='button' id='subtn' class = 'btn2'>Valider</button></a>";
       }
-      else{
-
-        echo "<h4 style = 'color : red; user-select: none;' >tu est deja passer cette exame<br> Tu Peu Voir Les Resultat</h4>";
-        echo "<a href='result.php'> <button type='button' class = 'btn2'>Voici La Correction</button></a>";
-        
-      }
-      ?>
+          ?>
 
     </section>
 
