@@ -1832,9 +1832,6 @@ Authore Name : Bootstrapthemes
 Authore link : http://bootstrapthemes.co
 
 */
-
-
-
 h1,
 h2,
 h3,
@@ -2088,4 +2085,38 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 /*==========================================================
                 JoinUs section style
 ============================================================*/
+#mb{
+	background-color: #000000 !important;
+	width: 100px !important;
+	text-align: center;
+    padding-bottom: 20px;
+	color: white;
+} 
+#xo{
+	COLOR: rgb(255, 255, 255); text-align: center;
+	padding: 25px 0;
+	background-color: #11967C;
+	font-weight: 800;
+}
+#student-name{
 
+width: 260px !important;
+}
+/* try to make the table scrolling  */
+/* .result-body .container .dataTables_wrapper .dt-row :first-child{
+	
+	overflow-x: scroll;
+background-color: rebeccapurple;
+} */
+  .card-note-profil{
+	max-height: 26.8rem; 
+	overflow-y: scroll;
+	
+  }
+  .card-note-profil::-webkit-scrollbar {
+	display: none; /* Hide scrollbar for Webkit (Chrome, Safari, Opera) */
+  }
+  .failed{
+	text-decoration: none;
+	color: #000;
+  }

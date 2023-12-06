@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 	<!-- start header -->
     <link href="../css/style.css" rel="stylesheet" />
     <header>
+=======
+   <header>
+>>>>>>> mbarek
         <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -18,6 +22,7 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </header>
 
     <?php
@@ -46,3 +51,8 @@
 
 </body>
 </html>
+=======
+     </header>
+
+ 
+>>>>>>> mbarek
