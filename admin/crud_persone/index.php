@@ -14,6 +14,7 @@
 <link href="../../css/flexslider.css" rel="stylesheet" />
 <link href="../../css/style.css" rel="stylesheet" />
 
+
  <style>
 body {
 	color: #566787;
@@ -275,6 +276,7 @@ $(document).ready(function()    {
 <div id="wrapper">
 	<header>
         <div class="navbar navbar-default navbar-static-top">
+
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -283,16 +285,21 @@ $(document).ready(function()    {
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="index.html"><img src="../../img/logo.png" alt="logo"/></a>
+					
                 </div>
+			
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="home.html">Home</a></li> 
 						<li><a href="cours.html">Courses</a></li>
                         <li><a href="result.html">Result</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="user_info.php">user info</a></li>
+                        <li><a href="../../index.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a></li>
 
                     </ul>
                 </div>
+			
             </div>
         </div>
 	</header>
@@ -315,16 +322,11 @@ $(document).ready(function()    {
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
-						<th>persone id</th>
+						
+						<th>number of </th>
 						<th>name</th>
 						<th>email</th>	
-						<th>password</th>
+						
 						<th>role</th>
 						<th>update</th>
 						<th>delet</th>
@@ -345,16 +347,11 @@ $(document).ready(function()    {
 					$password_user=$row['password_user'];
 					$role_name=$row['role_name'];
 					echo '<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
+						
 						<td>'.$user_id.'</td>
 						<td>'.$user_name.'</td>
 						<td>'.$email.'</td>
-						<td>'.$password_user.'</td>
+					
 						<td>'.$role_name.'</td>
 						
 						<td>

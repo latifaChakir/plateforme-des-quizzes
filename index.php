@@ -25,7 +25,7 @@ if (!$conn) {
     
     
     // Perform a query to check if the username and password match
-    $query = "SELECT * FROM autority_user inner JOIN personne ON autority_user.user_id=personne.user_id WHERE user_name = '$username' ";
+    $query = "SELECT * FROM autority_user inner JOIN personne ON autority_user.user_id=personne.user_id WHERE user_name = '$username'";
     $result = mysqli_query($conn, $query);
     $count = mysqli_num_rows($result);
     $row=mysqli_fetch_array($result);
@@ -37,10 +37,9 @@ if (!$conn) {
     
     if ($count == 0) {
       // Username and password do not match, display an alert
-                echo '    <script>document.getElementById("alert)".innerHTML=" <strong>Invalid!</strong> Invalid password"</script>';
+                echo '    <script>document.getElementById("alert").innerHTML=" <strong>Invalid!</strong> Invalid password"</script>';
     
       
-    
     } else {
       
         // Username and password match, redirect to the desired page

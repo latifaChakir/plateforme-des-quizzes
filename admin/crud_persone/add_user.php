@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
             
         // Check if the query executed successfully
         if ($rol_result) {
-            echo 'add success';
+        header('location:index.php');
         } else {
             echo 'invalid';
         }

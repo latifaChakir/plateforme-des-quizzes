@@ -10,16 +10,16 @@ $result=mysqli_query($conn,$query);
 $row = mysqli_fetch_assoc($result);
    $user_name = $row['user_name'];
     $email = $row['email'];
-    $password_user = $row['password_user'];
+    // $password_user = $row['password_user'];
     $role=$row['role_name'];
 if(isset($_POST['update'])){
 
     $user_name = $_POST['user_name'];
     $email = $_POST['email'];
-    $password_user = $_POST['password_user'];
+    // $password_user = $_POST['password_user'];
     $role = $_POST['role'];
 
-    $update="UPDATE personne set user_name='$user_name',email='$email',password_user='$password_user' where personne.user_id='$id' ";
+    $update="UPDATE personne set user_name='$user_name',email='$email' where personne.user_id='$id' ";
 
     mysqli_query($conn,$update);
     
@@ -30,6 +30,8 @@ if(isset($_POST['update'])){
         // Insert data into the autority_user table
         $rol_update = "UPDATE autority_user  set role_name='$role'where autority_user.user_id='$id'  ";
         $rol_result = mysqli_query($conn, $rol_update); 
+
+        header('location:index.php');
     }else{
         echo 'eroor';
     }
@@ -106,8 +108,7 @@ if(isset($_POST['update'])){
             <label for="email" class="label">Email</label>
             <input type="text" name="email" id="email" class="input-field"value="<?php echo $email?>">
             
-            <label for="password_user" class="label">Password</label>
-            <input type="password" name="password_user" id="password_user" class="input-field"value="<?php echo $password_user?>">
+            
             
             <label for="role" class="label">Role</label>
             <select name="role" id="role" class="input-field"value="<?php echo $role?>">
