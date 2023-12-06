@@ -155,14 +155,14 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                         <div class="list-group list-group-flush">
                             <!-- Card Table of Notes -->
                             <div class="container mt-5 px-2 card-note-profil" >
-                              <h4 style="color:#14A085; text-align:center;">my cours</h4>
+                              <h4 style="color:#14A085; text-align:center;">cours</h4>
                                 
                                 <div class="table-responsive">
                                     <table class="table table-responsive table-borderless">
                                         <!-- Table Header -->
                                         <thead>
                                             <tr class="bg-light">
-                                            <th scope="col" width="5%"></th>
+                                           
                                                 <th scope="col" width="5%">cours</th>
                                                 <th scope="col" width="20%" style="text-align:center;">note</th>
                                                 <th scope="col" width="10%">Status</th>
@@ -228,7 +228,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
 
                                                   // print the value of the cours note 
                                                   echo ' <tr>';
-                                                 echo '<th scope="col" width="5%"><a href="#"><button class="readCours-btn">read</button></a></th>';
+                                                
                                                 echo '<td>'.$coursName.'</td>';
 
                                                   echo'<td style="text-align:center;">';
@@ -239,14 +239,14 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                                    echo '<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">valide</span></td>';
                                                 }
                                                else if($u_note < 10 && $ratt_note == "no note" ){
-                                                  echo'<td><i class="fa fa-dot-circle-o text-danger"></i><a href="#" class="failed"><span class="ms-1"  >Failed</span></a></td>';
+                                                  echo'<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1"  >ratt</span></td>';
                                                 }
                                                 else if($u_note < 10 && $ratt_note != "no note" ){
                                                   echo'<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1" >Failed</span></td>';
                                                 }
                                                }
                                                   else{
-                                                    echo'<td><a href="#"><button class="readCours-btn">quiez</button></a></td>';
+                                                    echo'<td><a href="#"><button class="readCours-btn">-</button></a></td>';
                                                   }
   
                                                   echo' </tr>';
