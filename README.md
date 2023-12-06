@@ -1,2 +1,0 @@
-# plateforme-des-quizzes
-quizzes
