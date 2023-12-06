@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
-if(isset($_GET['studentid'])){
-	$student_id=$_GET['studentid'];  // ! you must need get the id of user from login !!!!!!!
+    session_start();
+	$student_id=$_SESSION['id'];  // ! you must need get the id of user from login !!!!!!!
 
   $student_name_req="SELECT `user_name` FROM personne WHERE `user_id`=$student_id";
   $AfficherResult_student_name = mysqli_query($conn, $student_name_req);
@@ -11,13 +11,13 @@ if(isset($_GET['studentid'])){
 
 $student_email_req="SELECT `email` FROM personne WHERE `user_id`=$student_id";
 $AfficherResult_student_email = mysqli_query($conn, $student_email_req);
-// EMAIL
+// EMAIL.
 $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
 
 	
 
 	
-}
+
 ?>
 
 <!DOCTYPE html>
