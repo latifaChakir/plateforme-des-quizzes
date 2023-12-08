@@ -63,3 +63,27 @@ CREATE table progression (
     foreign key (user_id) references Personne(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
     foreign key (cours_id) references Cours(cours_id) ON UPDATE CASCADE ON DELETE CASCADE 
 );
+
+CREATE table reponses (
+    rep_id INT PRIMARY KEY AUTO_INCREMENT,
+    qst_id int,
+    rep1 text,
+    rep2 text,
+    rep3 text,
+    rep4 text,
+    true_rep text,
+    foreign key (qst_id) references Questions(qst_id) ON UPDATE CASCADE ON DELETE CASCADE
+   
+);
+
+
+CREATE TABLE Reponse_Student (
+    repo_id INT PRIMARY KEY AUTO_INCREMENT,
+    content VARCHAR(50) NOT NULL,
+    ratt VARCHAR(50) NOT NULL,
+    user_id INT,
+    qstId INT,
+    FOREIGN KEY (user_id) REFERENCES Personne(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (qstId) REFERENCES Questions(qst_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+ 

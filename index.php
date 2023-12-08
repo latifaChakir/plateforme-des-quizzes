@@ -7,14 +7,10 @@ include("connect.php");
     session_start();
 
     
-    // Sanitize and retrieve the username and password from the form
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    // $password_hashed = password_hash($password, PASSWORD_DEFAULT);
-    # session 
-    
-    
-    // Perform a query to check if the username and password match
+
+  
     $query = "SELECT * FROM autority_user inner JOIN personne ON autority_user.user_id=personne.user_id WHERE user_name = '$username'";
     $result = mysqli_query($conn, $query);
     $count = mysqli_num_rows($result);
@@ -26,7 +22,6 @@ include("connect.php");
     
     
     if ($count == 0) {
-      // Username and password do not match, display an alert
                 echo '    <script>document.getElementById("alert).innerHTML=" <strong>Invalid!</strong> Invalid password"</script>';
     
       

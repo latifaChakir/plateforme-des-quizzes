@@ -33,8 +33,8 @@ if (isset($_POST['update'])) {
       } else {
         header('location:../../student/Home.html');
       }
-    } 
-}
+    }
+  }
 }
 
 
@@ -111,9 +111,9 @@ if (isset($_POST['update'])) {
           <div class="navbar-collapse collapse ">
             <ul class="nav navbar-nav">
               <li class="active"><a href="home.html">Home</a></li>
-              <li><a href="cours.html">Courses</a></li>
+              <li><a href="../cours/cours.php">Courses</a></li>
               <li><a href="result.html">Result</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="../../admin/contact.html">Contact</a></li>
               <li><a href="">profile</a></li>
 
             </ul>
@@ -124,7 +124,7 @@ if (isset($_POST['update'])) {
     </header>
 
 
-    <div class="form-container">
+    <div class="form-container" style="margin-bottom:10rem;">
       <form action="" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -133,11 +133,15 @@ if (isset($_POST['update'])) {
         <input type="email" id="email" name="email" required><br><br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password"  required><br><br>
-
-    <button type="submit" name="update" value="Update">Update</button>
+        <input type="password" id="password" name="password" required><br><br>
+        <div class="custom-button" style="display: flex;
+      justify-content: flex-end;">
+          <button class="btn btn-success" type="submit" name="update" value="Update">Edit</button>
+        </div>
       </form>
     </div>
 
 
 </body>
+
+<?php include("../../footer.php"); ?>

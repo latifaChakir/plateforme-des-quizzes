@@ -13,6 +13,8 @@
                         <li ><a href="../cours/cours.php">Courses</a></li>
                         <li><a href="result.html">Result</a></li>
                         <li><a href="../../admin/contact.html">Contact</a></li>
+                        
+                        
 
                     </ul>
                 </div>

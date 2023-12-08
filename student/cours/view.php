@@ -4,6 +4,7 @@ session_start();
 include("../../connect.php");
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    $_SESSION['id']=$id;
 
 
     $sql = "SELECT * FROM cours WHERE cours_id = $id";
@@ -151,7 +152,7 @@ if (isset($_GET['id'])) {
         </div>
     </section>
     <div class="service_btn center" style="display:flex; justify-content:center;margin-bottom:20px">
-        <a href="passQuiz.php?id=<?php echo $row['cours_id']; ?>" style="border-radius: 10px;"
+        <a href="../question/question.php?id=<?php echo $row['cours_id']; ?>" style="border-radius: 10px;"
             class="btn btn-lg-square waves-effect waves-orange">Pass
             Quise
         </a>

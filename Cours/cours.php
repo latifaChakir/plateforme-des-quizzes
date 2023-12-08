@@ -7,6 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
 	<meta name="author" content="http://webthemez.com" />
+
+
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
@@ -14,10 +17,10 @@
 		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-	<link href="../../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="../../css/jcarousel.css" rel="stylesheet" />
-	<link href="../../css/flexslider.css" rel="stylesheet" />
-	<link href="../../css/style.css" rel="stylesheet" />
+	<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="../css/jcarousel.css" rel="stylesheet" />
+	<link href="../css/flexslider.css" rel="stylesheet" />
+	<link href="../css/style.css" rel="stylesheet" />
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -29,13 +32,13 @@
 	<div id="wrapper">
 
 		<!-- start header -->
-		<?php include '../../nav.php' ?>
+		<?php include '../nav.php' ?>
 		<!-- end header -->
 		<section id="inner-headline">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2 class="pageTitle">Gérer Les Cours</h2>
+						<h2 class="pageTitle">Gerer Les Cours</h2>
 					</div>
 				</div>
 			</div>
@@ -51,7 +54,7 @@
 									<div class="head_title center m-y-3 wow fadeInUp">
 										<div class="d-flex justify-content-end">
 
-											<button type="button" class="btn custom-bg " style="border-radius: 10px;">
+											<button type="button" class="btn custom-bg ">
 												<span class="text-muted" data-bs-toggle="modal"
 													data-bs-target="#addCoursModal"><strong>Ajouter cours
 													</strong></span>
@@ -60,7 +63,7 @@
 									</div>
 									<div class="row list-group-horizontal mt-3">
 										<?php
-										include('../../connect.php');
+										include('../connect.php');
 										$sqlSelect = "SELECT * FROM cours";
 										$result = mysqli_query($conn, $sqlSelect);
 										foreach ($result as $data) {
@@ -94,7 +97,7 @@
 														</div>
 													</div>
 													<div class="service_btn center">
-														<a href="../question/question.php?id=<?php echo $data['cours_id']; ?>" style="margin-top:-50px;border-radius: 10px;"
+														<a href="quiz.php?id=<?php echo $data['cours_id']; ?>" style="margin-top:-50px;border-radius: 10px;"
 															class="btn btn-lg-square waves-effect waves-orange" >Add
 															Quises</a>
 
@@ -146,7 +149,7 @@
 
 		</div>
 
-		<?php include '../../footer.php' ?>
+		<?php include '../footer.php' ?>
 	</div>
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
