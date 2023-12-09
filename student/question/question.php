@@ -7,6 +7,9 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['id'])){
   $user_id = $_SESSION['user_id'];
   
 }
+else{
+  header('Location:../../index.php');
+}
 $cour_id = $_SESSION['id'];
 
 $sql = "SELECT questions.* ,
@@ -75,7 +78,7 @@ $resultcheck = mysqli_query($conn , $sqlcheck);
 
 
 <div id="wrapper">
-    <?php include '../../nav.php'?>
+    <?php include 'nav.php'?>
     <section id="inner-headline">
       <div class="container">
         <div class="row">

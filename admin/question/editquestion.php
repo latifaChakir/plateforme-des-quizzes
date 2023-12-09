@@ -48,7 +48,7 @@ if (isset($_GET["qst_id"])) {
 	<div id="wrapper">
 
 		<!-- start header -->
-		<?php include '../../nav.php'?>
+		<?php include 'nav.php'?>
 		<!-- end header -->
 		<section id="inner-headline">
 			<div class="container">

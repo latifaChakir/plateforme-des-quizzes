@@ -6,6 +6,9 @@ session_start();
 if (isset($_SESSION['id'])) {
     $cour_id = $_SESSION['id'];
 }
+else{
+    header('Location:../../index.php');
+  }
 
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -98,7 +101,7 @@ function getrepo_ratt($row) {
 
 <body>
     <div id="wrapper">
-        <?php include '../../nav.php'?>
+    <?php include 'nav.php'?>
         <section id="inner-headline">
             <div class="container">
                 <div class="row">
@@ -138,14 +141,14 @@ function getrepo_ratt($row) {
 
                         if ($rep_std == $rep_tr) {
                             $result_std = 2;
-                            $resultALL +=  4;
+                            $resultALL +=  2;
                         } else {
                             $result_std = 0;
                         }
 
                         if ($rep_ratt == $rep_tr) {
                             $result_ratt = 2;
-                            $resultALLratt += 4;
+                            $resultALLratt += 2;
                         } else {
                             $result_ratt = 0;
                         }
@@ -170,14 +173,14 @@ function getrepo_ratt($row) {
 
                             if ($rep_std == $rep_tr) {
                                 $result_std = 2;
-                                $resultALL +=  4;
+                                $resultALL +=  2;
                             } else {
                                 $result_std = 0;
                             }
 
                             if ($rep_ratt == $rep_tr) {
                                 $result_ratt = 2;
-                                $resultALLratt += 4;
+                                $resultALLratt += 2;
                             } else {
                                 $result_ratt = 0;
                             }

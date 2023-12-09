@@ -56,7 +56,7 @@ $num_qst = 0;
 
 <body>
 	<div id="wrapper">
-		<?php include '../../nav.php'?>
+		<?php include 'nav.php'?>
 		<section id="inner-headline">
 			<div class="container">
 				<div class="row">

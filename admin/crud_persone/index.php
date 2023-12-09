@@ -244,6 +244,7 @@ table.table .avatar {
 	font-weight: normal;
 }	
 
+
 </style>
 <script>
 $(document).ready(function()    {
@@ -274,35 +275,8 @@ $(document).ready(function()    {
 </head>
 <body>
 <div id="wrapper">
-	<header>
-        <div class="navbar navbar-default navbar-static-top">
+	  <?php include("nav.php") ?>
 
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html"><img src="../../img/logo.png" alt="logo"/></a>
-					
-                </div>
-			
-                <div class="navbar-collapse collapse ">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="home.html">Home</a></li> 
-						<li><a href="cours.html">Courses</a></li>
-                        <li><a href="result.html">Result</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="user_info.php">user info</a></li>
-                        <li><a href="../../index.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a></li>
-
-                    </ul>
-                </div>
-			
-            </div>
-        </div>
-	</header>
 	<!-- end header -->
 	<section>
 	<div class="container-xl">
@@ -329,7 +303,7 @@ $(document).ready(function()    {
 						
 						<th>role</th>
 						<th>update</th>
-						<th>delet</th>
+						<th>delete</th>
 						
 						
 					</tr>
@@ -338,9 +312,11 @@ $(document).ready(function()    {
 				</tbody>
 				<?php
 				include('../../connect.php');
-				$query="SELECT * FROM `personne` INNER JOIN autority_user on personne.user_id=autority_user.user_id";
+				$query="SELECT * FROM `personne` INNER JOIN autority_user on personne.user_id=autority_user.user_id ORDER BY role_name";
 				$result=mysqli_query($conn,$query);
+				$number = 0 ; 
 				while($row=mysqli_fetch_assoc($result)){
+					$number++;
 					$user_id=$row['user_id'];
 					$user_name=$row['user_name'];
 					$email=$row['email'];
@@ -348,7 +324,7 @@ $(document).ready(function()    {
 					$role_name=$row['role_name'];
 					echo '<tr>
 						
-						<td>'.$user_id.'</td>
+						<td>'.$number.'</td>
 						<td>'.$user_name.'</td>
 						<td>'.$email.'</td>
 					

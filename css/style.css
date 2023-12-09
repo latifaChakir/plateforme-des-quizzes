@@ -1021,7 +1021,7 @@ blockquote cite a:visited 				{ color:#555; }
 
 /* --- button --- */
 .btn{text-align: center;
-background: #318CCA;
+background: #14A085;
 color: #fff;
 border-radius: 0;padding: 10px 30px;}
 .btn-theme {
@@ -1030,7 +1030,11 @@ border-radius: 0;padding: 10px 30px;}
 .btn-theme:hover {
 	color: #eee;
 }
+.btn:hover{
+	background-color: white;
+	color: #000;
 
+}
 /* --- list style --- */
 
 ul.general {
@@ -1902,11 +1906,36 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 .icon1 a i{
 
     width: 10px;
-  color: rgb(0, 128, 17);
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px;
+  transition: 0.3;
+
+}
+
+.icon1 a i:hover{
+
+    width: 10px;
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+  transform: scale(1.2) rotate(-5deg);
+
+
 }
 
 .icon1:hover{
   color: whitesmoke;
+}
+
+.icon2 i{
+	color: #000000;
+	transition: 0.3;
+
+}
+
+.icon2 i:hover{
+	color: #ffffff;
+	transform: scale(1.2) rotate(-15deg);
+
 }
 .icon2{
   color: cornflowerblue;
@@ -1915,8 +1944,17 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
   color: whitesmoke;
 }
 .icon3 a i {
-  color: red;
+  color: rgb(0, 0, 0);
+  transition: 0.3;
+  margin-top: 10px;
 }
+
+
+.icon3 a i:hover {
+	color: rgb(255, 0, 0);
+	transform: scale(1.5) rotate(15deg);
+
+  }
 .icon3:hover{
   color: whitesmoke;
 }
@@ -2054,7 +2092,7 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 ============================================================*/
 
 .main_service_area .col-md-4:hover .single_service{
-    background: #3f444a;
+    background: #14A085;
     color:#fff;
 }
 .main_service_area .jumbotron{
@@ -2063,7 +2101,7 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 }
 .main_service_area .single_service{
     transition: all 0.3s;
-    border: 1px solid #ddd;
+    border: 1px solid #14A085;
     border-radius: 5px;
 	
 }
@@ -2161,3 +2199,22 @@ width: 260px !important;
     text-decoration: none;
     color: #000;
   }
+
+
+
+
+/* CSS LATIIIFA  */
+
+#viewtext{
+	background-color: rgb(255, 255, 255);
+	color: #000;
+	max-width: 95%;
+	
+	box-shadow: 0px 0px 3px 1px;
+	margin-bottom: 30px;
+}
+
+#viewtext p{
+	font-size: 17px;
+
+}

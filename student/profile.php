@@ -3,8 +3,11 @@ session_start();
 
 
 include '../connect.php';
-  
-	$student_id=$_SESSION['user_id'];  // ! you must need get the id of user from login !!!!!!!
+if (isset($_SESSION["user_id"])){
+	$student_id=$_SESSION['user_id'];}
+else{
+  header('Location:../index.php');
+}  // ! you must need get the id of user from login !!!!!!!
 
   $student_name_req="SELECT `user_name` FROM personne WHERE `user_id`=$student_id";
   $AfficherResult_student_name = mysqli_query($conn, $student_name_req);
@@ -135,7 +138,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
             <div class="container">
                 <div class="navbar-header">
                     
-                    <a class="navbar-brand" href="index.html"><img src="../img/logo.png" alt="logo" /></a>
+                    <a class="navbar-brand" href="Home.html"><img src="../img/logo.png" alt="logo" /></a>
                 </div>
                 <div >
                     <ul class="nav list-nav " >
@@ -272,7 +275,6 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                                 }
                                                }
                                                   else{
-                                                    echo'<td><a href="../student/question/question.php?id='.$_SESSION['id'].'"><button class="readCours-btn">quiez</button></a></td>';
                                                   }
   
                                                   echo' </tr>';

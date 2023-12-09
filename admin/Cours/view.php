@@ -50,9 +50,9 @@ $conn->close();
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="home.html">Home</a></li>
-                            <li><a href="cours.html">Courses</a></li>
-                            <li><a href="result.html">Result</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="cours.php">Courses</a></li>
+                            <li><a href="../result/result.php">Result</a></li>
+                            <li><a href="../contact.php">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,17 +72,17 @@ $conn->close();
     </section>
 
     <section id="content">
-        <div class="container" style="border:solid 1px #000; margin-bottom:30px">
+        <div class="container" id="viewtext">
             <div class="cours-contenu">
                 <h2>Contenu du cours</h2>
                 <?php
                 $coursContent = $row['cours_content'];
 
-                $coursContentAvecStyles = str_replace('#', '<h3 style="color:#000;">', $coursContent);
+                $coursContentAvecStyles = str_replace('#', '<h3>', $coursContent);
 
                 $coursContentAvecStyles = str_replace('$', '</h3>', $coursContentAvecStyles);
 
-                echo $coursContentAvecStyles;
+                echo "<p> $coursContentAvecStyles </p>" ;
                 ?>
 
 

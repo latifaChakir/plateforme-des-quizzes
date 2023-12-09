@@ -1,7 +1,11 @@
 <?php
 session_start();
 
-$userId = $_SESSION['user_id'];
+if(isset($_SESSION["user_id"])){
+$userId = $_SESSION['user_id'];}
+else{
+	header('Location:../../index.php');
+}
 
 ?>
 
@@ -33,31 +37,8 @@ $userId = $_SESSION['user_id'];
 	<div id="wrapper">
 
 		<!-- start header -->
-		<header>
-			<div class="navbar navbar-default navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="index.html"><img src="../../img/logo.png" alt="logo" /></a>
-					</div>
-					<div class="navbar-collapse collapse ">
-						<ul class="nav navbar-nav">
-							<li><a href="../../student/home.html">Home</a></li>
-							<li><a href="../../student/contact.html">Contact</a></li>
-							<li><a href="../user_info.php">user info</a></li>
-							<li><a href="../../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-			</div>
-		</header><!-- end header -->
+		<?php include("nav.php") ?>
+		<!-- end header -->
 		<section id="inner-headline">
 			<div class="container">
 				<div class="row">

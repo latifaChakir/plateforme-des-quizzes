@@ -1,7 +1,15 @@
 <?php
-session_start();
 
 include("../../connect.php");
+
+session_start();
+
+if(isset($_SESSION["user_id"])){
+    $userId = $_SESSION['user_id'];}
+    else{
+        header('Location:../../index.php');
+    }
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $_SESSION['id'] = $id;
@@ -41,7 +49,7 @@ if (isset($_GET['id'])) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
 
     <script>
         var courseId = <?php echo json_encode($id); ?>;
@@ -92,33 +100,12 @@ if (isset($_GET['id'])) {
     </script>
 
 
+
 </head>
 
 <body>
     <div id="wrapper">
-        <header>
-            <div class="navbar navbar-default navbar-static-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.html"><img src="../../img/logo.png" alt="logo" /></a>
-                    </div>
-                    <div class="navbar-collapse collapse ">
-                        <ul class="nav navbar-nav">
-                            <li><a href="../../student/home.html">Home</a></li>
-                            <li><a href="../../student/contact.html">Contact</a></li>
-                            <li><a href="../user_info.php">user info</a></li>
-                            <li><a href="../../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <?php include("nav.php") ?>
     </div>
     <section id="inner-headline">
         <div class="container">
@@ -133,17 +120,17 @@ if (isset($_GET['id'])) {
     </section>
 
     <section id="content">
-        <div class="container" style="border:solid 1px #000; margin-bottom:30px">
+        <div class="container" id="viewtext">
             <div class="cours-contenu">
                 <h2>Contenu du cours</h2>
                 <?php
                 $coursContent = $row['cours_content'];
 
-                $coursContentAvecStyles = str_replace('#', '<h3 style="color:#000;">', $coursContent);
+                $coursContentAvecStyles = str_replace('#', '<h3>', $coursContent);
 
                 $coursContentAvecStyles = str_replace('$', '</h3>', $coursContentAvecStyles);
 
-                echo $coursContentAvecStyles;
+                echo "<p> $coursContentAvecStyles </p>" ;
                 ?>
 
 

@@ -64,6 +64,27 @@ include("connect.php");
     <link href="css/flexslider.css" rel="stylesheet" />
     <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      input[type = text] , input[type = password]{
+    width: 65vw;
+    border-radius: 0px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    user-select: none;
+    background-color:rgb(246, 246, 246);
+    border: none;
+    font-size: 15px;
+    color: black;
+    margin-top: 5px;
+   
+}
+input[type = text]:hover , input[type = password]:hover{
+  background-color: white;
+}
+
+    </style>
+
   </head>
   <body>
     <div id="wrapper">
@@ -88,7 +109,7 @@ include("connect.php");
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="admin/contact.html">Contact</a></li>
+                <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
           </div>

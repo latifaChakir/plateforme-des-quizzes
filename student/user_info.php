@@ -29,9 +29,9 @@ if (isset($_POST['update'])) {
       $role = $row['role_name'];
 
       if ($role == 'admin') {
-        header('location:../Home.html');
+        header('location:Home.html');
       } else {
-        header('location:../../student/Home.html');
+        header('location:Home.html');
       }
     }
   }
@@ -60,12 +60,15 @@ if (isset($_POST['update'])) {
       max-width: 400px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #f2f2f2;
-      border-radius: 5px;
+      background-color: #FFF;
+      border-radius: 2px;
+      box-shadow: 0pc 0px 3px 1px;
+      margin-top: 30px;
     }
 
     .form-container label {
       font-weight: bold;
+      margin-bottom: 30px;
     }
 
     .form-container input[type="text"],
@@ -74,9 +77,18 @@ if (isset($_POST['update'])) {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 0px;
+      border: none;
       box-sizing: border-box;
+      background-color: white ;
+      border-bottom: 1px solid black;
+      font-size: 18px;
+    }
+
+    .form-container input[type="text"]:hover,
+    .form-container input[type="email"]:hover,
+    .form-container input[type="password"]:hover{
+      background-color: rgb(246, 246, 246);
     }
 
     .form-container input[type="submit"] {
@@ -91,6 +103,8 @@ if (isset($_POST['update'])) {
     .form-container input[type="submit"]:hover {
       background-color: #45a049;
     }
+
+    
   </style>
 
 </head>
@@ -106,7 +120,7 @@ if (isset($_POST['update'])) {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="../img/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="Home.html"><img src="../img/logo.png" alt="logo" /></a>
           </div>
           <div class="navbar-collapse collapse ">
             <ul class="nav navbar-nav">
@@ -127,14 +141,13 @@ if (isset($_POST['update'])) {
 
     <div class="form-container" style="margin-bottom:10rem;">
       <form action="" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+      <label>User Info</label>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="text" id="name" name="name" required placeholder="Name..."><br><br>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="email" id="email" name="email" required placeholder = "Email..."><br><br>
+
+        <input type="password" id="password" name="password" required placeholder="password..."><br><br>
         <div class="custom-button" style="display: flex;
       justify-content: flex-end;">
           <button class="btn btn-success" type="submit" name="update" value="Update">Edit</button>

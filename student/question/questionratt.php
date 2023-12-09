@@ -6,10 +6,13 @@ if(isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
 
 }
-
+else{
+  header('Location:../../index.php');
+}
 if(isset($_SESSION['id'])){
   $cour_id = $_SESSION['id'];
 }
+
 $sql = "SELECT questions.* ,
 reponses.rep_id idqst ,
 reponses.rep1 rep1 ,
@@ -67,7 +70,7 @@ $resultcheck = mysqli_query($conn , $sqlcheck);
 
 <body>
 <div id="wrapper">
-    <?php include '../../nav.php'?>
+<?php include 'nav.php'?>
     <section id="inner-headline">
       <div class="container">
         <div class="row">
