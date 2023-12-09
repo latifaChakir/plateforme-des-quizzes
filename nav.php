@@ -10,9 +10,9 @@
                 <div >
                     <ul class="nav list-nav " >
                         <li class="active"><a href="../../admin/home.html">Home</a></li>
-                        <li ><a href="../cours/cours.php">Courses</a></li>
-                        <li><a href="result.html">Result</a></li>
                         <li><a href="../../admin/contact.html">Contact</a></li>
+                        <li><a href= "../../admin/crud_persone/user_info.php">user info</a></li>
+                        <li><a href="../../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a></li>
                         
                         
 

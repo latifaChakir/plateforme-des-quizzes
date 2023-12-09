@@ -10,11 +10,30 @@ if(isset($_SESSION['user_id'])){
 if(isset($_SESSION['id'])){
   $cour_id = $_SESSION['id'];
 }
-$sql = "SELECT questions.* , reponses.rep_id idqst , reponses.rep1 rep1 , reponses.rep2 rep2 , reponses.rep3 rep3 , reponses.rep4 rep4, reponses.true_rep repT FROM questions 
-INNER JOIN reponses ON questions.qst_id = reponses.qst_id WHERE cours_id = $cour_id;";
+$sql = "SELECT questions.* ,
+reponses.rep_id idqst ,
+reponses.rep1 rep1 ,
+reponses.rep2 rep2 , 
+reponses.rep3 rep3 ,
+reponses.rep4 rep4, 
+reponses.true_rep repT ,
+personne.user_id user_id
+FROM questions 
+INNER JOIN reponses ON questions.qst_id = reponses.qst_id
+INNER JOIN personne ON personne.user_id = $user_id
+WHERE cours_id = $cour_id;";
 $result = mysqli_query($conn , $sql );
 
-$sqlcheck = "SELECT reponse_student.qstID AS checkid , reponse_student.user_id  FROM reponse_student WHERE user_id = $user_id AND ratt IS NULL ; ";
+$sqlcheck = "SELECT
+reponse_student.qstID AS checkid,
+reponse_student.content AS normale,
+reponse_student.ratt AS ratt
+FROM
+reponse_student
+WHERE
+user_id = $user_id
+AND reponse_student.ratt IS NULL;";
+
 $resultcheck = mysqli_query($conn , $sqlcheck);
 ?>
 

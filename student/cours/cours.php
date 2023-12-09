@@ -1,9 +1,9 @@
 <?php
-session_start(); 
+session_start();
 
-    $userId = $_SESSION['user_id'];
+$userId = $_SESSION['user_id'];
 
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,9 +48,10 @@ session_start();
 					<div class="navbar-collapse collapse ">
 						<ul class="nav navbar-nav">
 							<li><a href="../../student/home.html">Home</a></li>
-							<li  class="active"><a href="../cours/cours.php">Courses</a></li>
-							<li><a href="result.html">Result</a></li>
 							<li><a href="../../student/contact.html">Contact</a></li>
+							<li><a href="../user_info.php">user info</a></li>
+							<li><a href="../../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a>
+							</li>
 
 						</ul>
 					</div>
@@ -85,7 +86,7 @@ session_start();
 												<div class="jumbotron single_service  wow fadeInLeft">
 													<div class="s_service_text text-center d-flex justify-content-center align-items-center"
 														style="font-size:16px;">
-														<strong >
+														<strong>
 															<?php echo $data['cours_name']; ?>
 														</strong>
 													</div>
@@ -193,7 +194,7 @@ session_start();
 		</footer>
 	</div>
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-	
+
 	<script src="../js/jquery.js"></script>
 	<script src="../js/jquery.easing.1.3.js"></script>
 	<script src="../js/bootstrap.min.js"></script>

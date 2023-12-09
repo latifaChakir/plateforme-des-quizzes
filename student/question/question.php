@@ -3,23 +3,42 @@ include('../../connect.php');
 
 session_start();
 
-if(isset($_SESSION['user_id'])){
-    $user_id = $_SESSION['user_id'];
-
+if(isset($_SESSION['user_id']) && isset($_SESSION['id'])){
+  $user_id = $_SESSION['user_id'];
+  
 }
+$cour_id = $_SESSION['id'];
 
-if(isset($_SESSION['id'])){
-    $cour_id = $_SESSION['id'];
-}
-else{
-  $cour_id = 4;
-}
+$sql = "SELECT questions.* ,
+reponses.rep_id idqst ,
+reponses.rep1 rep1 ,
+reponses.rep2 rep2 , 
+reponses.rep3 rep3 ,
+reponses.rep4 rep4, 
+reponses.true_rep repT ,
+personne.user_id user_id
+FROM questions 
+INNER JOIN reponses ON questions.qst_id = reponses.qst_id
+INNER JOIN personne ON personne.user_id = $user_id
+INNER JOIN cours ON questions.cours_id = cours.cours_id
+WHERE questions.cours_id = $cour_id;";
 
-$sql = "SELECT questions.* , reponses.rep_id idqst , reponses.rep1 rep1 , reponses.rep2 rep2 , reponses.rep3 rep3 , reponses.rep4 rep4, reponses.true_rep repT FROM questions 
-INNER JOIN reponses ON questions.qst_id = reponses.qst_id WHERE cours_id = $cour_id;";
 $result = mysqli_query($conn , $sql );
 
-$sqlcheck = "SELECT reponse_student.qstID checkid FROM reponse_student WHERE user_id = $user_id";
+$sqlcheck = "SELECT
+reponse_student.qstID AS checkid,
+reponse_student.content AS normale,
+reponse_student.ratt AS ratt,
+questions.cours_id
+FROM
+reponse_student
+INNER JOIN
+questions ON reponse_student.qstID = questions.qst_id
+INNER JOIN
+personne ON personne.user_id = reponse_student.user_id
+WHERE
+questions.cours_id = $cour_id AND personne.user_id = $user_id;";
+
 $resultcheck = mysqli_query($conn , $sqlcheck);
 
 ?>
@@ -53,6 +72,8 @@ $resultcheck = mysqli_query($conn , $sqlcheck);
 </head>
 
 <body>
+
+
 <div id="wrapper">
     <?php include '../../nav.php'?>
     <section id="inner-headline">
@@ -68,7 +89,7 @@ $resultcheck = mysqli_query($conn , $sqlcheck);
     <section id="secQuezes">
 
     <?php 
-      if (($rowcheck = mysqli_fetch_array($resultcheck)) != NULL ) {
+      if (($rowcheck = mysqli_fetch_array($resultcheck)) >= 1) {
          
         echo '<div class="alert alert-primary" role="alert">
               <h4>Tu as passé cet examen De Saison Normale, tu peux voir les résultats</h4>
@@ -104,7 +125,7 @@ $resultcheck = mysqli_query($conn , $sqlcheck);
         }
       ?>
    <?php 
-      if (($rowcheck = mysqli_fetch_array($resultcheck)) == NULL) {
+      if (($rowcheck = mysqli_fetch_array($resultcheck)) < 1) {
           echo "<a href='question.php'><button type='button' id='subtn' class = 'btn2'>Valider</button></a>";
       }
       

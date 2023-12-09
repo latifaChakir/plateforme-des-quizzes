@@ -4,7 +4,7 @@ session_start();
 include("../../connect.php");
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $_SESSION['id']=$id;
+    $_SESSION['id'] = $id;
 
 
     $sql = "SELECT * FROM cours WHERE cours_id = $id";
@@ -92,7 +92,6 @@ if (isset($_GET['id'])) {
     </script>
 
 
-
 </head>
 
 <body>
@@ -111,10 +110,10 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="home.html">Home</a></li>
-                            <li><a href="cours.html">Courses</a></li>
-                            <li><a href="result.html">Result</a></li>
-                            <li><a href="student/contact.html">Contact</a></li>
+                            <li><a href="../../student/home.html">Home</a></li>
+                            <li><a href="../../student/contact.html">Contact</a></li>
+                            <li><a href="../user_info.php">user info</a></li>
+                            <li><a href="../../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a>
                         </ul>
                     </div>
                 </div>

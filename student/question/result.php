@@ -12,12 +12,13 @@ if (isset($_SESSION['user_id'])) {
 }
 
 $sql = "SELECT questions.qst_id, questions.qst_content, questions.cours_id cours_id,
-        reponses.rep1, reponses.rep2, reponses.rep3, reponses.rep4,
-        reponses.true_rep tr_rep, reponse_student.content rep_std, reponse_student.ratt ratt
-        FROM questions 
-        INNER JOIN reponses ON reponses.qst_id = questions.qst_id 
-        INNER JOIN reponse_student ON reponse_student.qstID = questions.qst_id 
-        WHERE user_id = $user_id ;";
+reponses.rep1, reponses.rep2, reponses.rep3, reponses.rep4,
+reponses.true_rep tr_rep, reponse_student.content rep_std, reponse_student.ratt ratt
+FROM questions 
+INNER JOIN reponses ON reponses.qst_id = questions.qst_id 
+INNER JOIN reponse_student ON reponse_student.qstID = questions.qst_id 
+INNER JOIN personne ON reponse_student.user_id = personne.user_id
+WHERE personne.user_id = $user_id AND questions.cours_id =$cour_id;";
 
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
@@ -229,11 +230,11 @@ function getrepo_ratt($row) {
 
     </section>
     <?php
-        $sql_prsn = "SELECT * FROM personne WHERE user_id = 2";
+        $sql_prsn = "SELECT * FROM personne WHERE user_id = $user_id";
         $result_done = mysqli_query($conn, $sql_prsn);
 
         if ($row = mysqli_fetch_assoc($result_done)) {
-            $sql_reseultat = "SELECT * FROM resultat WHERE user_id = 2";
+            $sql_reseultat = "SELECT * FROM resultat WHERE user_id = $user_id AND cours_id  = $cour_id ";
             $result_done = mysqli_query($conn, $sql_reseultat) ;
             if(mysqli_num_rows($result_done) < 1) {
             
@@ -251,7 +252,7 @@ function getrepo_ratt($row) {
                     $sqlUPDATE = "UPDATE resultat 
                                 SET ratt_note = $resultALLratt,
                                     normal_note = $resultALL    
-                                WHERE user_id = 2";
+                                WHERE user_id = $user_id AND cours_id  = $cour_id";
                     $resUPDATE = mysqli_query($conn, $sqlUPDATE);
         
                     if (!$resUPDATE) {

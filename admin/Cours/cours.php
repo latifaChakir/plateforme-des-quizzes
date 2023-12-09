@@ -131,7 +131,7 @@
 								<input type="text" class="form-control" name="cours_name" required>
 							</div>
 							<div class="form-group">
-								<label>Lien vers le cours</label>
+								<label>	Contenu du cours</label>
 								<textarea class="form-control" type="text" class="form-control" name="url" required></textarea>
 							</div>
 

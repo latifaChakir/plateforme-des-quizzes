@@ -3,7 +3,7 @@ session_start();
 // echo $_SESSION['user_id'];
 
 
-include('../../connect.php');
+include('../connect.php');
 $id = $_SESSION['user_id'];
 // $data="SELECT * from personne where user_id='$id'";
 // $data_query=mysqli_query($conn,$data);
@@ -49,11 +49,11 @@ if (isset($_POST['update'])) {
   <meta name="description" content="" />
   <meta name="author" content="http://webthemez.com" />
   <!-- css -->
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-  <link href="../../css/jcarousel.css" rel="stylesheet" />
-  <link href="../../css/flexslider.css" rel="stylesheet" />
-  <link href="../../css/style.css" rel="stylesheet" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+  <link href="../css/jcarousel.css" rel="stylesheet" />
+  <link href="../css/flexslider.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
 
   <style>
     .form-container {
@@ -106,14 +106,14 @@ if (isset($_POST['update'])) {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="../../img/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="index.html"><img src="../img/logo.png" alt="logo" /></a>
           </div>
           <div class="navbar-collapse collapse ">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="../../admin/home.html">Home</a></li>
+              <li class="active"><a href="home.html">Home</a></li>
 
-              <li><a href="../../admin/contact.html">Contact</a></li>
-              <li><a href="crud_persone/user_info.php">user info</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="user_info.php">user info</a></li>
               <li><a href="../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a></li>
 
 
@@ -145,4 +145,4 @@ if (isset($_POST['update'])) {
 
 </body>
 
-<?php include("../../footer.php"); ?>
+<?php include("../footer.php"); ?>

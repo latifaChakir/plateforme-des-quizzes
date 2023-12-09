@@ -1,6 +1,9 @@
 <?php
+session_start();
+
+
 include '../connect.php';
-    session_start();
+  
 	$student_id=$_SESSION['user_id'];  // ! you must need get the id of user from login !!!!!!!
 
   $student_name_req="SELECT `user_name` FROM personne WHERE `user_id`=$student_id";
@@ -125,8 +128,30 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
     </style>
 </head>
 <body>
-    <!-- Start Header -->
-    <?php include '../nav.php' ?>
+    <!-- Start Header -->	<!-- start header -->
+    <link href="../css/style.css" rel="stylesheet" />
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    
+                    <a class="navbar-brand" href="index.html"><img src="../img/logo.png" alt="logo" /></a>
+                </div>
+                <div >
+                    <ul class="nav list-nav " >
+                        <li class="active"><a href="home.html">Home</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="user_info.php">user info</a></li>
+                        <li><a href="../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a></li>
+                        
+                        
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
     
     <!-- End Header -->
 
@@ -181,6 +206,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                            while ($result_cours = mysqli_fetch_assoc($AfficherResult_cours)){
                                             $coursName=$result_cours['cours_name'];
                                             $cours_id=$result_cours['cours_id'];
+                                            $_SESSION['id']=$result_cours['cours_id'];
                                             
                                             
                                                 
@@ -246,7 +272,7 @@ $result_student_email = mysqli_fetch_assoc($AfficherResult_student_email);
                                                 }
                                                }
                                                   else{
-                                                    echo'<td><a href="#"><button class="readCours-btn">quiez</button></a></td>';
+                                                    echo'<td><a href="../student/question/question.php?id='.$_SESSION['id'].'"><button class="readCours-btn">quiez</button></a></td>';
                                                   }
   
                                                   echo' </tr>';
