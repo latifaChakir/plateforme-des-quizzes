@@ -14,8 +14,6 @@
                         <li><a href= "../../admin/crud_persone/user_info.php">user info</a></li>
                         <li><a href="../../logout.php"><i class="fa-thin fa-arrow-right-from-bracket">log out</i></a></li>
                         
-                        
-
                     </ul>
                 </div>
             </div>
